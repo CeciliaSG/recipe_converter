@@ -30,9 +30,6 @@ def validate_user_recipe_choice(user_choice, worksheet_titles):
     """
 
     #user_choice = f"'{user_choice}'"
-
-    print(user_choice)
-    print(worksheet_titles)
     #return user_choice in worksheet_titles
 
     if user_choice in worksheet_titles:
@@ -50,7 +47,6 @@ def get_required_portions():
     while True:
         print('Enter number of portions for recipe: ')
         user_portions = input('Please enter number of portions: ')
-        #user_portions = int(user_portions)
         print(f'Portions: {user_portions}\n')
 
         if validate_user_portions(user_portions):
@@ -80,6 +76,8 @@ def main():
     validate_user_recipe_choice(user_choice, worksheet_titles)
     user_portions = get_required_portions()
 
+
+print('Welcome to our recipe bank where you can also convert each recipe for the exact number of portions you are cooking')
 main()
 
 
