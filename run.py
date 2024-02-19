@@ -16,8 +16,15 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('recipe_converter')
 
 
-butter_chicken = SHEET.worksheet('butter_chicken')
+def get_user_recipe_choice():
+    """
+    Gets the users's recipe choice
+    """
+    print('Please choose a recipe from our recipe bank')
+    #How to display the recipes available to the user
+    data_str = input('Please enter your choice: ')
+    print(f'You choose {data_str}\n')
 
-data = butter_chicken.get_all_values()
+    return data_str
 
-print(data)
+get_user_recipe_choice()   
