@@ -42,8 +42,21 @@ def validate_user_recipe_choice(user_choice, worksheet_titles):
 
 worksheet_titles = [worksheet.title.lower() for worksheet in SHEET.worksheets()]
 
+
+def get_required_portions():
+    """
+    Ask the user to input the required number of portions for the recipe to use in calculation for ingredients amounts
+    """
+
+    print('Enter number of portions for recipe: ')
+    user_portions = input('Please enter number of: ')
+    print(f'Portions: {user_portions}\n')
+
+
+
 user_choice = get_user_recipe_choice()
 validate_user_recipe_choice(user_choice, worksheet_titles)
+get_required_portions()
 
 
 
