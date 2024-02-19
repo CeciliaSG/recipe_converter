@@ -50,13 +50,33 @@ def get_required_portions():
 
     print('Enter number of portions for recipe: ')
     user_portions = input('Please enter number of: ')
+    #user_portions = int(user_portions)
     print(f'Portions: {user_portions}\n')
+
+    return user_portions
+
+def validate_user_portions(value):
+    """
+    Validates the user_input for number of portions, only one number allowed
+    """
+    try:
+
+        [value for value in values]
+        if len(values) != 1:
+            raise ValueError(
+                f"Choose a number between 1 and 100, you provided {len(values)}"
+            )
+    except ValueError as e:   
+        print(f"Not a correct choice: (e), please enter a new number")  
+        return False
+
+    return True
 
 
 
 user_choice = get_user_recipe_choice()
 validate_user_recipe_choice(user_choice, worksheet_titles)
-get_required_portions()
+user_portions = get_required_portions()
 
 
 
