@@ -29,9 +29,13 @@ def validate_user_recipe_choice(user_choice, worksheet_titles):
     Checks if the user's recipe choice is in the recipe bank
     """
 
+    print(user_choice)
+    print(worksheet_titles)
     return user_choice in worksheet_titles
-     
-worksheet_title = [worksheet.title.lower() for worksheet in SHEET.worksheets()]
+
+worksheet_titles = [worksheet.title.lower() for worksheet in SHEET.worksheets()]
 
 user_choice = get_user_recipe_choice()
+validate_user_recipe_choice(user_choice, worksheet_titles)
+
 
