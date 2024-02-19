@@ -1,6 +1,3 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -21,10 +18,20 @@ def get_user_recipe_choice():
     Gets the users's recipe choice
     """
     print('Please choose a recipe from our recipe bank')
-    #How to display the recipes available to the user
-    data_str = input('Please enter your choice: ')
-    print(f'You choose {data_str}\n')
+    #Display the recipes available to the user?
+    user_choice = input('Please enter your choice: ').lower()
+    print(f'You chose {user_choice}\n')
 
-    return data_str
+    return user_choice 
 
-get_user_recipe_choice()   
+def validate_user_recipe_choice(user_choice, worksheet_titles):
+    """
+    Checks if the user's recipe choice is in the recipe bank
+    """
+
+    return user_choice in worksheet_titles
+     
+worksheet_title = [worksheet.title.lower() for worksheet in SHEET.worksheets()]
+
+user_choice = get_user_recipe_choice()
+
