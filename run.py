@@ -54,7 +54,7 @@ def get_required_portions():
         print(f'Portions: {user_portions}\n')
 
         if validate_user_portions(user_portions):
-            print("Portions are valid")
+            print("Portions are ok")
             break
 
     return user_portions
@@ -70,16 +70,17 @@ def validate_user_portions(value):
                 f"Choose a number between 1 and 100, you provided {value}"
             )
     except ValueError as e:   
-        print(f"Not a correct choice: {e}, please enter a number between 1 and 100")  
+        print(f"Not a correct choice: {e}")  
         return False
 
     return True
 
+def main():
+    user_choice = get_user_recipe_choice()
+    validate_user_recipe_choice(user_choice, worksheet_titles)
+    user_portions = get_required_portions()
 
-
-user_choice = get_user_recipe_choice()
-validate_user_recipe_choice(user_choice, worksheet_titles)
-user_portions = get_required_portions()
+main()
 
 
 
