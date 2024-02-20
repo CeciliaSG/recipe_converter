@@ -78,7 +78,7 @@ def get_user_choice_ingredients(user_choice):
     """
     ingredients = SHEET.worksheet(user_choice).get_all_values()
 
-    ingredients_column = [row[1] for row in ingredients[1:]]
+    ingredients_column = [row[2] for row in ingredients[1:]]
   
     return ingredients_column
 
@@ -102,7 +102,8 @@ def print_recipe_new_measurements(user_choice, new_measurements):
 
     new_recipe = {headings: measurement for headings, measurement in zip(headings_column, new_measurements)}
     
-    print('new recipe:', new_recipe)
+    print('new recipe:', new_recipe)    
+    return new_recipe
 
 
 def main():
@@ -112,7 +113,7 @@ def main():
     user_portions = get_required_portions()
     ingredients_column = get_user_choice_ingredients(user_choice)
     new_measurements = calculate_user_measurements(ingredients_column, user_portions)
-    print_recipe_new_measurements(user_choice, new_measurements)
+    new_recipe = print_recipe_new_measurements(user_choice, new_measurements)
     
 
 print('Welcome to our recipe bank, where you can  convert each recipe for the exact number of portions you are cooking')
