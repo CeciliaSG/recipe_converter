@@ -93,6 +93,9 @@ def calculate_user_measurements(ingredients_column, user_portions):
     return new_measurements
 
 def print_recipe_new_measurements(user_choice, new_measurements):
+    """
+    Create the new recipe and display to the user
+    """
 
     headings = SHEET.worksheet(user_choice).get_all_values()
     headings_column = [row[0] for row in headings[1:]]
