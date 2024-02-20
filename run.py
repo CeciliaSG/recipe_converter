@@ -73,10 +73,14 @@ def validate_user_portions(value):
     return True
 
   
-def get_user_choice_ingredients():
+def get_user_choice_ingredients(user_choice):
 
-    ingredients = SHEET.worksheet('Butter chicken').get_all_values()
-    print(ingredients)
+    """
+    Access the ingredients for the user's chosen recipe
+    """
+    ingredients = SHEET.worksheet(user_choice).get_all_values()
+    print(ingredients)  
+    return ingredients
 
 
 def main():
@@ -84,7 +88,7 @@ def main():
     user_choice = get_user_recipe_choice()
     validate_user_recipe_choice(user_choice, worksheet_titles)
     user_portions = get_required_portions()
-    get_user_choice_ingredients()
+    ingredients = get_user_choice_ingredients(user_choice)
     
 
 print('Welcome to our recipe bank, where you can  convert each recipe for the exact number of portions you are cooking')
