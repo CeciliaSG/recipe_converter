@@ -38,6 +38,7 @@ def validate_user_recipe_choice(user_choice, worksheet_titles):
               print(f"Your choice: {user_choice}. No such recipe. Please choose recipe in our recipe bank.") 
 
 worksheet_titles = [worksheet.title.lower() for worksheet in SHEET.worksheets()]
+print("Worksheet Titles:", worksheet_titles)
 
 
 def get_required_portions():
@@ -71,13 +72,22 @@ def validate_user_portions(value):
 
     return True
 
+  
+def get_user_choice_ingredients():
+
+    ingredients = SHEET.worksheet('Butter chicken').get_all_values()
+    print(ingredients)
+
+
 def main():
+
     user_choice = get_user_recipe_choice()
     validate_user_recipe_choice(user_choice, worksheet_titles)
     user_portions = get_required_portions()
+    get_user_choice_ingredients()
+    
 
-
-print('Welcome to our recipe bank where you can also convert each recipe for the exact number of portions you are cooking')
+print('Welcome to our recipe bank, where you can  convert each recipe for the exact number of portions you are cooking')
 main()
 
 
