@@ -47,7 +47,7 @@ def get_required_portions():
     """
     while True:
         print('Enter number of portions for recipe: ')
-        user_portions = input('Please enter number of portions: ')
+        user_portions = int(input('Please enter number of portions: '))
         print(f'Portions: {user_portions}\n')
 
         if validate_user_portions(user_portions):
