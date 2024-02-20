@@ -105,6 +105,14 @@ def print_recipe_new_measurements(user_choice, new_measurements):
     print('new recipe:', new_recipe)    
     return new_recipe
 
+def convert_metrics_to_imperial_units():
+
+    metrics = SHEET.worksheet(user_choice).get_all_values()
+    metric_measurements = [row[1] for row in metrics[1:]]
+
+
+ 
+
 
 def main():
 
