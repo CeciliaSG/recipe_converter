@@ -1,4 +1,5 @@
 import gspread
+import pint
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -84,7 +85,7 @@ def get_user_choice_ingredients(user_choice):
 
 def calculate_user_measurements(ingredients_column, user_portions):
     """
-    Calculates the measurements with the users chose portions and recipe ingredients
+    Calculates the measurements with the users chosen portions and recipe ingredients
     """
 
     ingredients_float = [float(ingredient) for ingredient in ingredients_column]
@@ -96,7 +97,6 @@ def print_recipe_new_measurements(user_choice, new_measurements):
     """
     Create the new recipe and display to the user
     """
-
     headings = SHEET.worksheet(user_choice).get_all_values()
     headings_column = [row[0] for row in headings[1:]]
 
@@ -105,13 +105,11 @@ def print_recipe_new_measurements(user_choice, new_measurements):
     print('new recipe:', new_recipe)    
     return new_recipe
 
-def convert_metrics_to_imperial_units():
+def convert_metrics_to_imperial_units(new_recipe):
+    """
+    Convert the new_recipes metric units to imperial units.
+    """
 
-    metrics = SHEET.worksheet(user_choice).get_all_values()
-    metric_measurements = [row[1] for row in metrics[1:]]
-
-
- 
 
 
 def main():
@@ -122,6 +120,7 @@ def main():
     ingredients_column = get_user_choice_ingredients(user_choice)
     new_measurements = calculate_user_measurements(ingredients_column, user_portions)
     new_recipe = print_recipe_new_measurements(user_choice, new_measurements)
+    convert_metrics_to_imperial_units(new_recipe)
     
 
 print('Welcome to our recipe bank, where you can  convert each recipe for the exact number of portions you are cooking')
