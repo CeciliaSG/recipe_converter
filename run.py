@@ -38,8 +38,6 @@ def validate_user_recipe_choice(user_choice, worksheet_titles):
               print(f"Your choice: {user_choice}. No such recipe. Please choose recipe in our recipe bank.") 
 
 worksheet_titles = [worksheet.title.lower() for worksheet in SHEET.worksheets()]
-print("Worksheet Titles:", worksheet_titles)
-
 
 def get_required_portions():
     """
@@ -88,16 +86,18 @@ def calculate_user_measurements(ingredients_column, user_portions):
     """
     Calculates the measurements with the users chose portions and recipe ingredients
     """
-    print(ingredients_column)
-    print(user_portions)
 
     ingredients_float = [float(ingredient) for ingredient in ingredients_column]
     new_measurements =  [ingredient * user_portions for ingredient in ingredients_float]
 
     return new_measurements
 
-def print_recipe_new_measurements(new_measurements):
-    print(new_measurements)
+def print_recipe_new_measurements(user_choice, new_measurements):
+
+    headings = SHEET.worksheet(user_choice).get_all_values()
+    headings_column = [row[0] for row in headings[1:]]
+    
+    print('headings:', headings_column)
 
 
 def main():
@@ -107,7 +107,7 @@ def main():
     user_portions = get_required_portions()
     ingredients_column = get_user_choice_ingredients(user_choice)
     new_measurements = calculate_user_measurements(ingredients_column, user_portions)
-    print_recipe_new_measurements(new_measurements)
+    print_recipe_new_measurements(user_choice, new_measurements)
     
 
 print('Welcome to our recipe bank, where you can  convert each recipe for the exact number of portions you are cooking')
