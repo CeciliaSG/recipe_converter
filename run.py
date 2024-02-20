@@ -88,6 +88,11 @@ def calculate_user_measurements(ingredients_column, user_portions):
     print(ingredients_column)
     print(user_portions)
 
+    ingredients_float = [float(ingredients) for ingredients in ingredients_column]
+    new_measurements = ingredients_float * user_portions
+
+    print(new_measurements)
+
 
 
 def main():
