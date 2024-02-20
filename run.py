@@ -85,14 +85,19 @@ def get_user_choice_ingredients(user_choice):
     return ingredients_column
 
 def calculate_user_measurements(ingredients_column, user_portions):
+    """
+    Calculates the measurements with the users chose portions and recipe ingredients
+    """
     print(ingredients_column)
     print(user_portions)
 
     ingredients_float = [float(ingredient) for ingredient in ingredients_column]
     new_measurements =  [ingredient * user_portions for ingredient in ingredients_float]
 
-    print(new_measurements)
+    return new_measurements
 
+def print_recipe_new_measurements(new_measurements):
+    print(new_measurements)
 
 
 def main():
@@ -101,7 +106,8 @@ def main():
     validate_user_recipe_choice(user_choice, worksheet_titles)
     user_portions = get_required_portions()
     ingredients_column = get_user_choice_ingredients(user_choice)
-    calculate_user_measurements(ingredients_column, user_portions)
+    new_measurements = calculate_user_measurements(ingredients_column, user_portions)
+    print_recipe_new_measurements(new_measurements)
     
 
 print('Welcome to our recipe bank, where you can  convert each recipe for the exact number of portions you are cooking')
