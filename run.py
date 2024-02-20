@@ -96,8 +96,10 @@ def print_recipe_new_measurements(user_choice, new_measurements):
 
     headings = SHEET.worksheet(user_choice).get_all_values()
     headings_column = [row[0] for row in headings[1:]]
+
+    new_recipe = {headings: measurement for headings, measurement in zip(headings_column, new_measurements)}
     
-    print('headings:', headings_column)
+    print('new recipe:', new_recipe)
 
 
 def main():
