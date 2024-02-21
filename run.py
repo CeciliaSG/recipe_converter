@@ -101,17 +101,19 @@ def print_recipe_new_measurements(user_choice, new_measurements):
     Create the new recipe with the user's requested measurements, 
     and add the measurement labels and ingredient headings
     """
-    headings = SHEET.worksheet(user_choice).get_all_values()
-    headings_column = [row[0] for row in headings[1:]]
+    data = SHEET.worksheet(user_choice).get_all_values()
+    headings_column = [row[0] for row in data[1:]]
 
-    metrics = SHEET.worksheet(user_choice).get_all_values()
-    metric_measurements = [row[1] for row in metrics[1:]]
-    print(metric_measurements)
+    metric_measurements = [row[1] for row in data[1:]]
 
-    new_recipe = {headings: measurement for headings, measurement in zip(headings_column, new_measurements)}
+    print("Headings:", headings_column)
+    print("New measurements:", new_measurements)
+    print("Metric measurements:", metric_measurements)
+
+    new_recipe = [{heading: f"{measurement} {metric_measurements}" for heading, measurement, metric_measurements in zip(headings_column, new_measurements, metric_measurements)}]
     
     print('new recipe:', new_recipe)    
-    return new_recipe
+    #return new_recipe
 
 def convert_metrics_to_imperial_units():
     """
