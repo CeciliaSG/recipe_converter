@@ -28,14 +28,17 @@ def validate_user_recipe_choice(user_choice, worksheet_titles):
     """
     Checks if the user's recipe choice is in the recipe bank
     """
-
-    if user_choice in worksheet_titles:
+    while True:
+        if user_choice in worksheet_titles:
               print(f"You have chosen {user_choice}. This recipe is available.")
-    else:
+              break
+        else:
               print(f"Your choice: {user_choice}. No such recipe. Please choose recipe in our recipe bank.") 
+              user_choice = input('Please enter your choice: ').lower()
 
 worksheet_titles = [worksheet.title.lower() for worksheet in SHEET.worksheets()]
-
+  
+  
 def get_required_portions():
     """
     Ask the user to input the required number of portions 
@@ -43,12 +46,21 @@ def get_required_portions():
     """
     while True:
         print('Enter number of portions for recipe: ')
-        user_portions = int(input('Please enter number of portions: '))
-        print(f'Portions: {user_portions}\n')
 
-        if validate_user_portions(user_portions):
-            print("Portions are ok")
-            break
+        try:
+            user_portions = int(input('Please enter number of portions: '))
+            print(f'Portions: {user_portions}\n')
+
+            if validate_user_portions(user_portions):
+                print("Portions are ok")
+                break
+
+            else:
+                print('Not a valid choice. Please try again')
+                user_portions = int(input('Please enter number of portions: '))
+
+        except ValueError:  
+            print('Invalid input. Please enter a number.') 
 
     return user_portions
 
@@ -120,7 +132,6 @@ def print_recipe_new_measurements(user_choice, new_measurements):
     metric_measurements = [row[1] for row in data[1:]]
 
     new_recipe = {heading: f"{measurement} {metric_measurements}" for heading, measurement, metric_measurements in zip(headings_column, new_measurements, metric_measurements)}
-    
     print('new recipe:', new_recipe)
     print('metric measurements:', metric_measurements)     
     return new_recipe, metric_measurements
@@ -189,7 +200,7 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choi
     return new_recipe_imperial
 
 def print_recipe_metric(new_recipe):
-    print('new recipe:', new_recipe)
+    print(new_recipe)
 
 def print_recipe_imperial(new_recipe_imperial):
     print(new_recipe_imperial)
