@@ -29,7 +29,6 @@ def validate_user_recipe_choice(user_choice, worksheet_titles):
     Checks if the user's recipe choice is in the recipe bank
     """
 
-
     if user_choice in worksheet_titles:
               print(f"You have chosen {user_choice}. This recipe is available.")
     else:
@@ -70,6 +69,21 @@ def validate_user_portions(value):
 
     return True
 
+def input_request_metric_imperial(new_recipe, new_recipe_imperial):   
+
+    """
+    Lets the user chose if they want the measurements in imperial or metric units
+    """     
+    unit_choice = input('Please choose imperial/metric: ')
+    if unit_choice.lower() == 'metric':
+            print_recipe_metric(new_recipe)
+
+    elif unit_choice.lower() == 'imperial':
+            print_recipe_imperial(new_recipe_imperial)
+
+    else: 
+            print('please enter valid choice')
+
   
 def get_user_choice_ingredients(user_choice):
 
@@ -82,6 +96,7 @@ def get_user_choice_ingredients(user_choice):
     ingredients_column = [row[2] for row in ingredients[1:]]
   
     return ingredients_column
+
 
 def calculate_user_measurements(ingredients_column, user_portions):
     """
@@ -109,6 +124,7 @@ def print_recipe_new_measurements(user_choice, new_measurements):
     print('new recipe:', new_recipe)
     print('metric measurements:', metric_measurements)     
     return new_recipe, metric_measurements
+
 
 def convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choice):
     """
@@ -170,6 +186,13 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choi
 
     new_recipe_imperial = {heading: f"{measurement} {converted_measurement}" for heading, measurement, converted_measurement in zip(headings_column, converted_measurements, imperial_measurements) }     
     print(new_recipe_imperial)
+    return new_recipe_imperial
+
+def print_recipe_metric(new_recipe):
+    print('new recipe:', new_recipe)
+
+def print_recipe_imperial(new_recipe_imperial):
+    print(new_recipe_imperial)
 
 def main():
 
@@ -179,7 +202,8 @@ def main():
     ingredients_column = get_user_choice_ingredients(user_choice)
     new_measurements = calculate_user_measurements(ingredients_column, user_portions)
     new_recipe, metric_measurements = print_recipe_new_measurements(user_choice, new_measurements)
-    convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choice)
+    new_recipe_imperial = convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choice)
+    input_request_metric_imperial(new_recipe, new_recipe_imperial)
     
 
 print('Welcome to our recipe bank, where you can  convert each recipe for the exact number of portions you are cooking')
