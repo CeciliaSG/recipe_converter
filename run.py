@@ -35,9 +35,11 @@ def validate_user_recipe_choice(user_choice, worksheet_titles):
         else:
               print(f"Your choice: {user_choice}. No such recipe. Please choose recipe in our recipe bank.") 
               user_choice = input('Please enter your choice: ').lower()
+    
+    return user_choice          
 
 worksheet_titles = [worksheet.title.lower() for worksheet in SHEET.worksheets()]
-  
+       
   
 def get_required_portions():
     """
@@ -208,7 +210,7 @@ def print_recipe_imperial(new_recipe_imperial):
 def main():
 
     user_choice = get_user_recipe_choice()
-    validate_user_recipe_choice(user_choice, worksheet_titles)
+    user_choice = validate_user_recipe_choice(user_choice, worksheet_titles)
     user_portions = get_required_portions()
     ingredients_column = get_user_choice_ingredients(user_choice)
     new_measurements = calculate_user_measurements(ingredients_column, user_portions)
