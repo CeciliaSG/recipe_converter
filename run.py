@@ -106,7 +106,7 @@ def print_recipe_new_measurements(user_choice, new_measurements):
 
     metric_measurements = [row[1] for row in data[1:]]
 
-    new_recipe = [{heading: f"{measurement} {metric_measurements}" for heading, measurement, metric_measurements in zip(headings_column, new_measurements, metric_measurements)}]
+    new_recipe = {heading: f"{measurement} {metric_measurements}" for heading, measurement, metric_measurements in zip(headings_column, new_measurements, metric_measurements)}
     
     print('new recipe:', new_recipe)
     print('metric measurements:', metric_measurements)     
@@ -124,11 +124,12 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements):
     1dl = 0.422675284 cups
     """
 
-    for metric_measurements in new_recipe:
-        if 'gram' in metric_measurements:
-            converted_measurement = metric_measurements * 0.03527
+    for measurements in new_recipe:
+        for heading, metric_measurements in new_recipe.items():
+            if 'gram' in metric_measurements:
+                converted_measurement = metric_measurements * 0.03527
 
-            print(converted_measurement, "ounces")
+                print(converted_measurement, "ounces")
 
 def main():
 
