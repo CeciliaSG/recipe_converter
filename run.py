@@ -29,8 +29,6 @@ def validate_user_recipe_choice(user_choice, worksheet_titles):
     Checks if the user's recipe choice is in the recipe bank
     """
 
-    #user_choice = f"'{user_choice}'"
-    #return user_choice in worksheet_titles
 
     if user_choice in worksheet_titles:
               print(f"You have chosen {user_choice}. This recipe is available.")
@@ -112,7 +110,7 @@ def print_recipe_new_measurements(user_choice, new_measurements):
     print('metric measurements:', metric_measurements)     
     return new_recipe, metric_measurements
 
-def convert_metrics_to_imperial_units(new_recipe, metric_measurements):
+def convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choice):
     """
     Convert the new_recipe metric units to imperial 
     units. If there is litres, dl, grams or kg in the recipe, 
@@ -124,13 +122,16 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements):
     1dl = 0.422675284 cups
     """
 
+    converted_measurements = []
+
     for heading, metric_measurements in new_recipe.items():
 
         try:
             if 'gram' in metric_measurements:
                 quantity = metric_measurements.split()[0]
                 converted_measurement_ounces = round(float(quantity) * 0.03527, 1)
-                print(converted_measurement_ounces, "ounces")
+                converted_measurements.append(converted_measurement_ounces)
+                print("Converted_to_ounces:", converted_measurement_ounces, "ounces")
         except KeyError:
             pass        
 
@@ -138,6 +139,7 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements):
             if 'dl' in metric_measurements:
                 quantity = metric_measurements.split()[0]
                 converted_measurement_dl_cups = round(float(quantity) * 0.422675284, 1)
+                converted_measurements.append(converted_measurement_dl_cups)
                 print(converted_measurement_dl_cups, "cups")
         except KeyError:
             pass        
@@ -145,7 +147,8 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements):
         try:    
             if 'kg' in metric_measurements:
                 quantity = metric_measurements.split()[0]
-                converted_measurement__pounds = round(float(quantity) * 2.2046, 1) 
+                converted_measurement_pounds = round(float(quantity) * 2.2046, 1) 
+                converted_measurements.append(converted_measurement_pounds)
                 print(converted_measurement_pounds, "pounds")
         except KeyError:
             pass        
@@ -154,14 +157,19 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements):
             if 'litres' in metric_measurements:
                 quantity = metric_measurements.split()[0]
                 converted_measurement_litres_cups = round(float(quantity) * 4.22675284, 1)
-                print(converted_measurement_litres_cups, "cups") 
+                converted_measurements.append(converted_measurement_litres_cups)
+                print(converted_measurement_litres_cups, "cups")    
         except KeyError:
             pass     
 
+    print(converted_measurements)    
 
-           
-            
-           
+    data = SHEET.worksheet(user_choice).get_all_values()
+    headings_column = [row[0] for row in data[1:]]
+    imperial_measurements = [row[3] for row in data[1:]]
+
+    new_recipe_imperial = {heading: f"{measurement} {converted_measurement}" for heading, measurement, converted_measurement in zip(headings_column, converted_measurements, imperial_measurements) }     
+    print(new_recipe_imperial)
 
 def main():
 
@@ -171,7 +179,7 @@ def main():
     ingredients_column = get_user_choice_ingredients(user_choice)
     new_measurements = calculate_user_measurements(ingredients_column, user_portions)
     new_recipe, metric_measurements = print_recipe_new_measurements(user_choice, new_measurements)
-    convert_metrics_to_imperial_units(new_recipe, metric_measurements)
+    convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choice)
     
 
 print('Welcome to our recipe bank, where you can  convert each recipe for the exact number of portions you are cooking')
