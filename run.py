@@ -92,7 +92,7 @@ def calculate_user_measurements(ingredients_column, user_portions):
     """
 
     ingredients_float = [float(ingredient) for ingredient in ingredients_column]
-    new_measurements =  [ingredient * user_portions for ingredient in ingredients_float]
+    new_measurements =  [round(ingredient * user_portions) for ingredient in ingredients_float]
 
     return new_measurements
 
