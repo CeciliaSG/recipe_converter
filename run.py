@@ -125,28 +125,42 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements):
     """
 
     for heading, metric_measurements in new_recipe.items():
-        if 'gram' in metric_measurements:
-            quantity = metric_measurements.split()[0]
-            converted_measurement_ounces = round(float(quantity) * 0.03527, 1)
 
-        elif 'dl' in metric_measurements:
-            quantity = metric_measurements.split()[0]
-            converted_measurement_dl_cups = round(float(quantity) * 0.422675284, 1)
+        try:
+            if 'gram' in metric_measurements:
+                quantity = metric_measurements.split()[0]
+                converted_measurement_ounces = round(float(quantity) * 0.03527, 1)
+                print(converted_measurement_ounces, "ounces")
+        except KeyError:
+            pass        
 
-            print(converted_measurement_ounces, "ounces")
-            print(converted_measurement_dl_cups, "cups")
+        try:
+            if 'dl' in metric_measurements:
+                quantity = metric_measurements.split()[0]
+                converted_measurement_dl_cups = round(float(quantity) * 0.422675284, 1)
+                print(converted_measurement_dl_cups, "cups")
+        except KeyError:
+            pass        
+            
+        try:    
+            if 'kg' in metric_measurements:
+                quantity = metric_measurements.split()[0]
+                converted_measurement__pounds = round(float(quantity) * 2.2046, 1) 
+                print(converted_measurement_pounds, "pounds")
+        except KeyError:
+            pass        
 
-        elif 'litres' in metric_measurements:
-            quantity = metric_measurements.split()[0]
-            converted_measurement__pounds = round(float(quantity) * 2.2046, 1)  
+        try:     
+            if 'litres' in metric_measurements:
+                quantity = metric_measurements.split()[0]
+                converted_measurement_litres_cups = round(float(quantity) * 4.22675284, 1)
+                print(converted_measurement_litres_cups, "cups") 
+        except KeyError:
+            pass     
 
-        elif 'litres' in metric_measurements:
-            quantity = metric_measurements.split()[0]
-            converted_measurement_litres_cups = round(float(quantity) * 4.22675284, 1)       
 
-
-            print(converted_measurement_pounds, "pounds")
-            print(converted_measurement_litres_cups, "cups")
+           
+            
            
 
 def main():
