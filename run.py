@@ -96,6 +96,7 @@ def input_request_metric_imperial(new_recipe, new_recipe_imperial):
 
     else: 
             print('please enter valid choice')
+            return unit_choice        
 
   
 def get_user_choice_ingredients(user_choice):
@@ -208,17 +209,25 @@ def print_recipe_imperial(new_recipe_imperial):
 
 def main():
 
-    user_choice = get_user_recipe_choice()
-    user_choice = validate_user_recipe_choice(user_choice, worksheet_titles)
-    user_portions = get_required_portions()
-    ingredients_column = get_user_choice_ingredients(user_choice)
-    new_measurements = calculate_user_measurements(ingredients_column, user_portions)
-    new_recipe, metric_measurements = print_recipe_new_measurements(user_choice, new_measurements)
-    new_recipe_imperial = convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choice)
-    input_request_metric_imperial(new_recipe, new_recipe_imperial)
+    while True:
+        user_choice = get_user_recipe_choice()
+        user_choice = validate_user_recipe_choice(user_choice, worksheet_titles)
+        user_portions = get_required_portions()
+        ingredients_column = get_user_choice_ingredients(user_choice)
+        new_measurements = calculate_user_measurements(ingredients_column, user_portions)
+        new_recipe, metric_measurements = print_recipe_new_measurements(user_choice, new_measurements)
+        new_recipe_imperial = convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choice)
+        unit_choice = input_request_metric_imperial(new_recipe, new_recipe_imperial)
+
+        user_choice_two = input('Do you want to cook something else? (yes/no) \n').lower()
+        if user_choice_two != 'yes':
+            break
+
+    print('Thank you for using our recipe converter.')
     
 
-print('Welcome to our recipe bank, where you can  convert each recipe for the exact number of portions you are cooking')
+print('Welcome to our recipe bank, where you can convert each recipe for the exact number of portions you are cooking')
+print('Recipes to choose from:\n')
 main()
 
 
