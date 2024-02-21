@@ -124,13 +124,13 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements):
     1dl = 0.422675284 cups
     """
 
-    for measurements in new_recipe:
-        for heading, metric_measurements in new_recipe.items():
-            if 'gram' in metric_measurements:
-                quantity = metric_measurements.split()[0]
-                converted_measurement = float(quantity) * 0.03527
+    #for measurements in new_recipe:
+    for heading, metric_measurements in new_recipe.items():
+        if 'gram' in metric_measurements:
+            quantity = metric_measurements.split()[0]
+            converted_measurement = round(float(quantity) * 0.03527)
 
-                print(converted_measurement, "ounces")
+            print(converted_measurement, "ounces")
 
 def main():
 
