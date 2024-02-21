@@ -127,7 +127,8 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements):
     for measurements in new_recipe:
         for heading, metric_measurements in new_recipe.items():
             if 'gram' in metric_measurements:
-                converted_measurement = metric_measurements * 0.03527
+                quantity = metric_measurements.split()[0]
+                converted_measurement = float(quantity) * 0.03527
 
                 print(converted_measurement, "ounces")
 
