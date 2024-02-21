@@ -1,5 +1,4 @@
 import gspread
-import pint
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -16,7 +15,7 @@ SHEET = GSPREAD_CLIENT.open('recipe_converter')
 
 def get_user_recipe_choice():
     """
-    Gets the users's recipe choice
+    Gets the users's recipe choice.
     """
     print('Please choose a recipe from our recipe bank')
     #Display the recipes available to the user?
@@ -42,7 +41,8 @@ worksheet_titles = [worksheet.title.lower() for worksheet in SHEET.worksheets()]
 
 def get_required_portions():
     """
-    Ask the user to input the required number of portions for the recipe to use in calculation for ingredients amounts
+    Ask the user to input the required number of portions 
+    for the recipe to use in calculation for ingredients amounts
     """
     while True:
         print('Enter number of portions for recipe: ')
@@ -57,7 +57,8 @@ def get_required_portions():
 
 def validate_user_portions(value):
     """
-    Validates the user_input for number of portions, only one number allowed
+    Validates the user_input for number of portions, 
+    only one number allowed
     """
     try:
         value = int(value)
@@ -75,7 +76,8 @@ def validate_user_portions(value):
 def get_user_choice_ingredients(user_choice):
 
     """
-    Access the ingredients for the user's chosen recipe and returns the integer values for calculation
+    Access the ingredients for the user's chosen recipe 
+    and returns the integer values for calculation
     """
     ingredients = SHEET.worksheet(user_choice).get_all_values()
 
@@ -85,7 +87,8 @@ def get_user_choice_ingredients(user_choice):
 
 def calculate_user_measurements(ingredients_column, user_portions):
     """
-    Calculates the measurements with the users chosen portions and recipe ingredients
+    Calculates the measurements with the users 
+    chosen portions and recipe ingredients
     """
 
     ingredients_float = [float(ingredient) for ingredient in ingredients_column]
@@ -105,10 +108,18 @@ def print_recipe_new_measurements(user_choice, new_measurements):
     print('new recipe:', new_recipe)    
     return new_recipe
 
-def convert_metrics_to_imperial_units(new_recipe):
+def convert_metrics_to_imperial_units():
     """
-    Convert the new_recipes metric units to imperial units.
+    Convert the new_recipe metric units to imperial 
+    units. If there is litres, dl, grams or kg in the recipe, 
+    convert to gallons, ounces, cups and pounds.
+
+    1kg = 2.2046 stone
+    1 gram = 0.03527 ounces
+    1 litre = 4.22675284 cups
+    1 dl = 0.422675284 cups
     """
+
 
 
 
@@ -120,7 +131,7 @@ def main():
     ingredients_column = get_user_choice_ingredients(user_choice)
     new_measurements = calculate_user_measurements(ingredients_column, user_portions)
     new_recipe = print_recipe_new_measurements(user_choice, new_measurements)
-    convert_metrics_to_imperial_units(new_recipe)
+    convert_metrics_to_imperial_units()
     
 
 print('Welcome to our recipe bank, where you can  convert each recipe for the exact number of portions you are cooking')
