@@ -98,10 +98,15 @@ def calculate_user_measurements(ingredients_column, user_portions):
 
 def print_recipe_new_measurements(user_choice, new_measurements):
     """
-    Create the new recipe and display to the user
+    Create the new recipe with the user's requested measurements, 
+    and add the measurement labels and ingredient headings
     """
     headings = SHEET.worksheet(user_choice).get_all_values()
     headings_column = [row[0] for row in headings[1:]]
+
+    metrics = SHEET.worksheet(user_choice).get_all_values()
+    metric_measurements = [row[1] for row in metrics[1:]]
+    print(metric_measurements)
 
     new_recipe = {headings: measurement for headings, measurement in zip(headings_column, new_measurements)}
     
