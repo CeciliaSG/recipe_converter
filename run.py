@@ -106,29 +106,29 @@ def print_recipe_new_measurements(user_choice, new_measurements):
 
     metric_measurements = [row[1] for row in data[1:]]
 
-    print("Headings:", headings_column)
-    print("New measurements:", new_measurements)
-    print("Metric measurements:", metric_measurements)
-
     new_recipe = [{heading: f"{measurement} {metric_measurements}" for heading, measurement, metric_measurements in zip(headings_column, new_measurements, metric_measurements)}]
     
-    print('new recipe:', new_recipe)    
-    #return new_recipe
+    print('new recipe:', new_recipe)
+    print('metric measurements:', metric_measurements)     
+    return new_recipe, metric_measurements
 
-def convert_metrics_to_imperial_units():
+def convert_metrics_to_imperial_units(new_recipe, metric_measurements):
     """
     Convert the new_recipe metric units to imperial 
     units. If there is litres, dl, grams or kg in the recipe, 
     convert to gallons, ounces, cups and pounds.
 
     1kg = 2.2046 stone
-    1 gram = 0.03527 ounces
-    1 litre = 4.22675284 cups
-    1 dl = 0.422675284 cups
+    1gram = 0.03527 ounces
+    1litre = 4.22675284 cups
+    1dl = 0.422675284 cups
     """
 
+    for metric_measurements in new_recipe:
+        if 'gram' in metric_measurements:
+            converted_measurement = metric_measurements * 0.03527
 
-
+            print(converted_measurement, "ounces")
 
 def main():
 
@@ -137,8 +137,8 @@ def main():
     user_portions = get_required_portions()
     ingredients_column = get_user_choice_ingredients(user_choice)
     new_measurements = calculate_user_measurements(ingredients_column, user_portions)
-    new_recipe = print_recipe_new_measurements(user_choice, new_measurements)
-    convert_metrics_to_imperial_units()
+    new_recipe, metric_measurements = print_recipe_new_measurements(user_choice, new_measurements)
+    convert_metrics_to_imperial_units(new_recipe, metric_measurements)
     
 
 print('Welcome to our recipe bank, where you can  convert each recipe for the exact number of portions you are cooking')
