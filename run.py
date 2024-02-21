@@ -59,7 +59,6 @@ def get_required_portions():
 
             else:
                 print('Not a valid choice. Please try again')
-                user_portions = int(input('Please enter number of portions: '))
 
         except ValueError:  
             print('Invalid input. Please enter a number.') 
