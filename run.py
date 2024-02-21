@@ -118,19 +118,36 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements):
     units. If there is litres, dl, grams or kg in the recipe, 
     convert to gallons, ounces, cups and pounds.
 
-    1kg = 2.2046 stone
+    1kg = 2.2046 pounds
     1gram = 0.03527 ounces
     1litre = 4.22675284 cups
     1dl = 0.422675284 cups
     """
 
-    #for measurements in new_recipe:
     for heading, metric_measurements in new_recipe.items():
         if 'gram' in metric_measurements:
             quantity = metric_measurements.split()[0]
-            converted_measurement = round(float(quantity) * 0.03527, 1)
+            converted_measurement_ounces = round(float(quantity) * 0.03527, 1)
 
-            print(converted_measurement, "ounces")
+        elif 'dl' in metric_measurements:
+            quantity = metric_measurements.split()[0]
+            converted_measurement_dl_cups = round(float(quantity) * 0.422675284, 1)
+
+            print(converted_measurement_ounces, "ounces")
+            print(converted_measurement_dl_cups, "cups")
+
+        elif 'litres' in metric_measurements:
+            quantity = metric_measurements.split()[0]
+            converted_measurement__pounds = round(float(quantity) * 2.2046, 1)  
+
+        elif 'litres' in metric_measurements:
+            quantity = metric_measurements.split()[0]
+            converted_measurement_litres_cups = round(float(quantity) * 4.22675284, 1)       
+
+
+            print(converted_measurement_pounds, "pounds")
+            print(converted_measurement_litres_cups, "cups")
+           
 
 def main():
 
