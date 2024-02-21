@@ -92,7 +92,7 @@ def calculate_user_measurements(ingredients_column, user_portions):
     """
 
     ingredients_float = [float(ingredient) for ingredient in ingredients_column]
-    new_measurements =  [round(ingredient * user_portions) for ingredient in ingredients_float]
+    new_measurements =  [round(ingredient * user_portions, 1) for ingredient in ingredients_float]
 
     return new_measurements
 
@@ -128,7 +128,7 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements):
     for heading, metric_measurements in new_recipe.items():
         if 'gram' in metric_measurements:
             quantity = metric_measurements.split()[0]
-            converted_measurement = round(float(quantity) * 0.03527)
+            converted_measurement = round(float(quantity) * 0.03527, 1)
 
             print(converted_measurement, "ounces")
 
