@@ -20,6 +20,9 @@ def get_user_recipe_choice():
     Gets the users's recipe choice.
     """
     print('Please choose a recipe from our recipe bank')
+    worksheet_titles = [worksheet.title.lower() for worksheet in SHEET.worksheets()]
+    print('Recipes to choose from:\n')
+    print(worksheet_titles)
     #Display the recipes available to the user?
     user_choice = input('Please enter your choice: \n').lower()
     print(f'You chose {user_choice}\n')
@@ -231,6 +234,10 @@ def display_recipe_imperial(new_recipe_imperial):
 
 def main():
 
+    """
+    Run all program functions
+    """
+
     while True:
     
         user_choice = get_user_recipe_choice()
@@ -262,5 +269,4 @@ def main():
     
 
 print('Welcome to our recipe bank, where you can convert each recipe \n for the exact number of portions you are cooking')
-print('Recipes to choose from:\n')
 main()
