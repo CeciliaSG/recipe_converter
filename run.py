@@ -212,7 +212,7 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choi
     new_recipe_imperial = ChainMap(new_recipe_imperial, unconverted_measurements) 
     print('New:', new_recipe_imperial)
 
-    #print('unconverted:', unconverted_measurements)
+    print('unconverted:', unconverted_measurements)
     #print('imperial:', new_recipe_imperial)
     return new_recipe_imperial
 
@@ -227,6 +227,7 @@ def display_recipe_imperial(new_recipe_imperial):
 def main():
 
     while True:
+    
         user_choice = get_user_recipe_choice()
         user_choice = validate_user_recipe_choice(user_choice, worksheet_titles)
         user_portions = get_required_portions()
@@ -236,11 +237,21 @@ def main():
         new_recipe_imperial = convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choice)
         unit_choice = input_request_metric_imperial(new_recipe, new_recipe_imperial)
 
-        user_choice_two = input('Do you want to cook something else? (yes/no) \n').lower()
-        if user_choice_two != 'yes':
-            break
-
+        while True:
+        
+            user_choice_two = input('Do you want to cook something else? (yes/no) \n').lower()
             
+            if user_choice_two == 'no':
+                break
+
+            elif user_choice_two == 'yes':
+                break
+
+            else:
+                print('Invalid choice. Please enter yes or no')
+
+        if user_choice_two == 'no':
+            break
 
     print('Thank you for using our recipe converter.')
     
@@ -248,6 +259,3 @@ def main():
 print('Welcome to our recipe bank, where you can convert each recipe \n for the exact number of portions you are cooking')
 print('Recipes to choose from:\n')
 main()
-
-
-
