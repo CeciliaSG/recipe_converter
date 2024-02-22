@@ -1,6 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 from pprint import pprint, pformat
+from collections import ChainMap
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -208,7 +209,7 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choi
     new_recipe_imperial = {heading: f"{measurement} {converted_measurement}" for heading, measurement, converted_measurement in zip(headings_column, converted_measurements, imperial_measurements)}     
     unconverted_measurements = {heading: f"{measurement}" for heading, measurement in zip(headings_column, unconverted_measurements)}     
 
-    #new_recipe_imperial = dict(new_recipe_imperial, **unconverted_measurements) 
+    new_recipe_imperial = ChainMap(new_recipe_imperial, unconverted_measurements) 
     print('New:', new_recipe_imperial)
 
     #print('unconverted:', unconverted_measurements)
@@ -238,6 +239,8 @@ def main():
         user_choice_two = input('Do you want to cook something else? (yes/no) \n').lower()
         if user_choice_two != 'yes':
             break
+
+            
 
     print('Thank you for using our recipe converter.')
     
