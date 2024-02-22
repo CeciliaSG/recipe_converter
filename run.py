@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from pprint import pprint, pformat
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -54,7 +55,7 @@ def get_required_portions():
             print(f'Portions: {user_portions}\n')
 
             if validate_user_portions(user_portions):
-                print("Portions are ok")
+                print("Portions ✔")
                 break
 
             else:
@@ -89,13 +90,13 @@ def input_request_metric_imperial(new_recipe, new_recipe_imperial):
     """     
     unit_choice = input('Please choose imperial/metric: \n')
     if unit_choice.lower() == 'metric':
-            print_recipe_metric(new_recipe)
+            display_recipe_metric(new_recipe)
 
     elif unit_choice.lower() == 'imperial':
-            print_recipe_imperial(new_recipe_imperial)
+            display_recipe_imperial(new_recipe_imperial)
 
     else: 
-            print('please enter valid choice')
+            print('Please enter valid choice')
             return unit_choice        
 
   
@@ -103,7 +104,7 @@ def get_user_choice_ingredients(user_choice):
 
     """
     Access the ingredients for the user's chosen recipe 
-    and returns the integer values for calculation
+    and returns the int or float values for calculation
     """
     ingredients = SHEET.worksheet(user_choice).get_all_values()
 
@@ -123,7 +124,7 @@ def calculate_user_measurements(ingredients_column, user_portions):
 
     return new_measurements
 
-def print_recipe_new_measurements(user_choice, new_measurements):
+def display_recipe_new_measurements(user_choice, new_measurements):
     """
     Create the new recipe with the user's requested measurements, 
     and add the measurement labels and ingredient headings
@@ -199,10 +200,12 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choi
     print(new_recipe_imperial)
     return new_recipe_imperial
 
-def print_recipe_metric(new_recipe):
+def display_recipe_metric(new_recipe):
     print(new_recipe)
 
-def print_recipe_imperial(new_recipe_imperial):
+def display_recipe_imperial(new_recipe_imperial):
+    s = pformat(new_recipe_imperial)
+    print(s)
     print(new_recipe_imperial)
 
 def main():
@@ -213,7 +216,7 @@ def main():
         user_portions = get_required_portions()
         ingredients_column = get_user_choice_ingredients(user_choice)
         new_measurements = calculate_user_measurements(ingredients_column, user_portions)
-        new_recipe, metric_measurements = print_recipe_new_measurements(user_choice, new_measurements)
+        new_recipe, metric_measurements = display_recipe_new_measurements(user_choice, new_measurements)
         new_recipe_imperial = convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choice)
         unit_choice = input_request_metric_imperial(new_recipe, new_recipe_imperial)
 
@@ -224,7 +227,7 @@ def main():
     print('Thank you for using our recipe converter.')
     
 
-print('Welcome to our recipe bank, where you can convert each recipe for the exact number of portions you are cooking')
+print('Welcome to our recipe bank, where you can convert each recipe \n for the exact number of portions you are cooking')
 print('Recipes to choose from:\n')
 main()
 
