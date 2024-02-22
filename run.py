@@ -151,14 +151,17 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choi
     """
 
     converted_measurements = []
+    unconverted_measurements = []
 
     for heading, metric_measurements in new_recipe.items():
+        conversion = False
 
         try:
             if 'gram' in metric_measurements:
                 quantity = metric_measurements.split()[0]
                 converted_measurement_ounces = round(float(quantity) * 0.03527, 1)
                 converted_measurements.append(converted_measurement_ounces)
+                conversion = True
                 print("Converted_to_ounces:", converted_measurement_ounces, "ounces")
         except KeyError:
             pass        
@@ -168,6 +171,7 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choi
                 quantity = metric_measurements.split()[0]
                 converted_measurement_dl_cups = round(float(quantity) * 0.422675284, 1)
                 converted_measurements.append(converted_measurement_dl_cups)
+                conversion = True
                 print(converted_measurement_dl_cups, "cups")
         except KeyError:
             pass        
@@ -177,6 +181,7 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choi
                 quantity = metric_measurements.split()[0]
                 converted_measurement_pounds = round(float(quantity) * 2.2046, 1) 
                 converted_measurements.append(converted_measurement_pounds)
+                conversion = True
                 print(converted_measurement_pounds, "pounds")
         except KeyError:
             pass        
@@ -186,18 +191,28 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choi
                 quantity = metric_measurements.split()[0]
                 converted_measurement_litres_cups = round(float(quantity) * 4.22675284, 1)
                 converted_measurements.append(converted_measurement_litres_cups)
+                conversion = True
                 print(converted_measurement_litres_cups, "cups")    
         except KeyError:
             pass     
 
-    print(converted_measurements)    
+        if not conversion:
+            unconverted_measurements.append((heading, metric_measurements)) 
+
+    #print('converted:', converted_measurements)  
 
     data = SHEET.worksheet(user_choice).get_all_values()
     headings_column = [row[0] for row in data[1:]]
     imperial_measurements = [row[3] for row in data[1:]]
 
-    new_recipe_imperial = {heading: f"{measurement} {converted_measurement}" for heading, measurement, converted_measurement in zip(headings_column, converted_measurements, imperial_measurements) }     
-    print(new_recipe_imperial)
+    new_recipe_imperial = {heading: f"{measurement} {converted_measurement}" for heading, measurement, converted_measurement in zip(headings_column, converted_measurements, imperial_measurements)}     
+    unconverted_measurements = {heading: f"{measurement}" for heading, measurement in zip(headings_column, unconverted_measurements)}     
+
+    #new_recipe_imperial = dict(new_recipe_imperial, **unconverted_measurements) 
+    print('New:', new_recipe_imperial)
+
+    #print('unconverted:', unconverted_measurements)
+    #print('imperial:', new_recipe_imperial)
     return new_recipe_imperial
 
 def display_recipe_metric(new_recipe):
@@ -205,8 +220,8 @@ def display_recipe_metric(new_recipe):
 
 def display_recipe_imperial(new_recipe_imperial):
     s = pformat(new_recipe_imperial)
-    print(s)
-    print(new_recipe_imperial)
+    print('Recipe_imperial:', s)
+    #print(new_recipe_imperial)
 
 def main():
 
