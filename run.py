@@ -87,18 +87,23 @@ def validate_user_portions(value):
 def input_request_metric_imperial(new_recipe, new_recipe_imperial):   
 
     """
-    Lets the user chose if they want the measurements in imperial or metric units
+    Lets the user chose if they want the measurements in imperial 
+    or metric units, requires user to input correct answer
     """     
-    unit_choice = input('Please choose imperial/metric: \n')
-    if unit_choice.lower() == 'metric':
-            display_recipe_metric(new_recipe)
+    while True:
+        unit_choice = input('Please choose imperial/metric: \n')
+        if unit_choice.lower() == 'metric':
+                display_recipe_metric(new_recipe)
+                break
 
-    elif unit_choice.lower() == 'imperial':
-            display_recipe_imperial(new_recipe_imperial)
+        elif unit_choice.lower() == 'imperial':
+                display_recipe_imperial(new_recipe_imperial)
+                break
 
-    else: 
-            print('Please enter valid choice')
-            return unit_choice        
+        else: 
+                print('Please enter valid choice')
+
+    return unit_choice        
 
   
 def get_user_choice_ingredients(user_choice):
