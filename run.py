@@ -19,7 +19,7 @@ def get_user_recipe_choice():
     """
     print('Please choose a recipe from our recipe bank')
     #Display the recipes available to the user?
-    user_choice = input('Please enter your choice: ').lower()
+    user_choice = input('Please enter your choice: \n').lower()
     print(f'You chose {user_choice}\n')
 
     return user_choice 
@@ -50,7 +50,7 @@ def get_required_portions():
         print('Enter number of portions for recipe: ')
 
         try:
-            user_portions = int(input('Please enter number of portions: '))
+            user_portions = int(input('Please enter number of portions: \n'))
             print(f'Portions: {user_portions}\n')
 
             if validate_user_portions(user_portions):
@@ -87,7 +87,7 @@ def input_request_metric_imperial(new_recipe, new_recipe_imperial):
     """
     Lets the user chose if they want the measurements in imperial or metric units
     """     
-    unit_choice = input('Please choose imperial/metric: ')
+    unit_choice = input('Please choose imperial/metric: \n')
     if unit_choice.lower() == 'metric':
             print_recipe_metric(new_recipe)
 
