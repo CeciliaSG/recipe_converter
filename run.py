@@ -20,10 +20,9 @@ def get_user_recipe_choice():
     Gets the users's recipe choice.
     """
     print('Please choose a recipe from our recipe bank')
-    worksheet_titles = [worksheet.title.lower() for worksheet in SHEET.worksheets()]
     print('Recipes to choose from:\n')
-    print(worksheet_titles)
-    #Display the recipes available to the user?
+    pprint(', '.join(worksheet_titles).title())
+
     user_choice = input('Please enter your choice: \n').lower()
     print(f'You chose {user_choice}\n')
 
