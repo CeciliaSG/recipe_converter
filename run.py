@@ -133,9 +133,7 @@ def print_recipe_new_measurements(user_choice, new_measurements):
 
     metric_measurements = [row[1] for row in data[1:]]
 
-    new_recipe = {heading: f"{measurement} {metric_measurements}" for heading, measurement, metric_measurements in zip(headings_column, new_measurements, metric_measurements)}
-    print('new recipe:', new_recipe)
-    print('metric measurements:', metric_measurements)     
+    new_recipe = {heading: f"{measurement} {metric_measurements}" for heading, measurement, metric_measurements in zip(headings_column, new_measurements, metric_measurements)}  
     return new_recipe, metric_measurements
 
 
