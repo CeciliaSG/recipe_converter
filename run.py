@@ -205,7 +205,7 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choi
             pass     
 
         if not conversion:
-            unconverted_measurements.append((heading, metric_measurements)) 
+            unconverted_measurements.append(metric_measurements) 
 
     #print('converted:', converted_measurements)  
 
@@ -214,7 +214,7 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choi
     imperial_measurements = [row[3] for row in data[1:]]
 
     new_recipe_imperial = {heading: f"{measurement} {converted_measurement}" for heading, measurement, converted_measurement in zip(headings_column, converted_measurements, imperial_measurements)}     
-    unconverted_measurements = {heading: f"{measurement}" for heading, measurement in zip(headings_column, unconverted_measurements)}     
+    unconverted_measurements = {heading: measurement for heading, measurement in zip(headings_column, unconverted_measurements)}     
 
     new_recipe_imperial = ChainMap(new_recipe_imperial, unconverted_measurements) 
     print('New:', new_recipe_imperial)
