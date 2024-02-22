@@ -146,7 +146,7 @@ def display_recipe_new_measurements(user_choice, new_measurements):
     return new_recipe, metric_measurements
 
 
-def convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choice):
+def convert_metrics_to_imperial_units(new_recipe, user_choice):
     """
     Convert the new_recipe metric units to imperial 
     units. If there is litres, dl, grams or kg in the recipe, 
@@ -161,12 +161,12 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choi
     converted_measurements = []
     unconverted_measurements = []
 
-    for heading, metric_measurements in new_recipe.items():
+    for heading, measurement in new_recipe.items():
         conversion = False
 
         try:
-            if 'gram' in metric_measurements:
-                quantity = metric_measurements.split()[0]
+            if 'gram' in measurement:
+                quantity = measurement.split()[0]
                 converted_measurement_ounces = round(float(quantity) * 0.03527, 1)
                 converted_measurements.append(converted_measurement_ounces)
                 conversion = True
@@ -175,8 +175,8 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choi
             pass        
 
         try:
-            if 'dl' in metric_measurements:
-                quantity = metric_measurements.split()[0]
+            if 'dl' in measurement:
+                quantity = measurement.split()[0]
                 converted_measurement_dl_cups = round(float(quantity) * 0.422675284, 1)
                 converted_measurements.append(converted_measurement_dl_cups)
                 conversion = True
@@ -185,8 +185,8 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choi
             pass        
             
         try:    
-            if 'kg' in metric_measurements:
-                quantity = metric_measurements.split()[0]
+            if 'kg' in measurement:
+                quantity = measurement.split()[0]
                 converted_measurement_pounds = round(float(quantity) * 2.2046, 1) 
                 converted_measurements.append(converted_measurement_pounds)
                 conversion = True
@@ -195,8 +195,8 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choi
             pass        
 
         try:     
-            if 'litres' in metric_measurements:
-                quantity = metric_measurements.split()[0]
+            if 'litres' in measurement:
+                quantity = measurement.split()[0]
                 converted_measurement_litres_cups = round(float(quantity) * 4.22675284, 1)
                 converted_measurements.append(converted_measurement_litres_cups)
                 conversion = True
@@ -205,9 +205,8 @@ def convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choi
             pass     
 
         if not conversion:
-            unconverted_measurements.append(metric_measurements) 
-
-    #print('converted:', converted_measurements)  
+            unconverted_measurements.append((heading, new_recipe)) 
+  
 
     data = SHEET.worksheet(user_choice).get_all_values()
     headings_column = [row[0] for row in data[1:]]
@@ -245,7 +244,7 @@ def main():
         ingredients_column = get_user_choice_ingredients(user_choice)
         new_measurements = calculate_user_measurements(ingredients_column, user_portions)
         new_recipe, metric_measurements = display_recipe_new_measurements(user_choice, new_measurements)
-        new_recipe_imperial = convert_metrics_to_imperial_units(new_recipe, metric_measurements, user_choice)
+        new_recipe_imperial = convert_metrics_to_imperial_units(new_recipe, user_choice)
         unit_choice = input_request_metric_imperial(new_recipe, new_recipe_imperial)
 
         while True:
