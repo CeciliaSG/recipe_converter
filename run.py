@@ -23,7 +23,7 @@ def get_user_recipe_choice():
     print("\n".join([title.title() for title in worksheet_titles]) + "\n")
 
     user_choice = input("Please enter your choice: \n").lower()
-    print(f"You chose {user_choice}\n")
+    #print(f"You chose {user_choice}\n")
 
     return user_choice
 
@@ -223,16 +223,24 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
 
 
 def display_recipe_metric(new_recipe):
-
+    """
+    Handle disply/printing of the recipe with metric measurements
+    """
     print(custom_print(new_recipe))
 
 
 def display_recipe_imperial(newer_recipe_imperial):
-
+    """
+    Handle disply/printing of the recipe with imperial measurements
+    """
     print(custom_print(newer_recipe_imperial))
 
 
 def custom_print(obj):
+
+    """
+    Handle custom printing
+    """
 
     if isinstance(obj, list):
         return "\n".join(f"{item[0]}: {item[1]}" for item in obj)
