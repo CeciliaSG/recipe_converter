@@ -23,7 +23,7 @@ def get_user_recipe_choice():
     print("\n".join([title.title() for title in worksheet_titles]) + "\n")
 
     user_choice = input("Please enter your choice: \n").lower()
-    #print(f"You chose {user_choice}\n")
+    # print(f"You chose {user_choice}\n")
 
     return user_choice
 
@@ -178,33 +178,32 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
             converted_measurement_ounces = round(float(quantity) * 0.03527, 1)
             converted_measurements.append(converted_measurement_ounces)
             conversion = True
-            print("Converted_to_ounces:", converted_measurement_ounces, "ounces")
+            #print("Converted_to_ounces:", converted_measurement_ounces, "ounces")
 
         if "dl" in measurement:
             quantity = measurement.split()[0]
             converted_measurement_dl_cups = round(float(quantity) * 0.422675284, 1)
             converted_measurements.append(converted_measurement_dl_cups)
             conversion = True
-            print(converted_measurement_dl_cups, "cups")
+            #print(converted_measurement_dl_cups, "cups")
 
         if "kg" in measurement:
             quantity = measurement.split()[0]
             converted_measurement_pounds = round(float(quantity) * 2.2046, 1)
             converted_measurements.append(converted_measurement_pounds)
             conversion = True
-            print(converted_measurement_pounds, "pounds")
+            #print(converted_measurement_pounds, "pounds")
 
         if "litres" in measurement:
             quantity = measurement.split()[0]
             converted_measurement_litres_cups = round(float(quantity) * 4.22675284, 1)
             converted_measurements.append(converted_measurement_litres_cups)
             conversion = True
-            print(converted_measurement_litres_cups, "cups")
+            #print(converted_measurement_litres_cups, "cups")
 
         if not conversion:
             unconverted_measurements.append((heading, measurement))
 
-    print("unconverted_measurements1:", unconverted_measurements)
     data = SHEET.worksheet(user_choice).get_all_values()
     headings_column = [row[0] for row in data[1:]]
     imperial_measurements = [row[3] for row in data[1:]]
@@ -217,7 +216,7 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
     ]
 
     newer_recipe_imperial = new_recipe_imperial + unconverted_measurements
-    print("New:", new_recipe_imperial)
+    #print("New:", new_recipe_imperial)
 
     return newer_recipe_imperial
 
@@ -243,10 +242,10 @@ def custom_print(obj):
     """
 
     if isinstance(obj, list):
-        return "\n".join(f"{item[0]}: {item[1]}" for item in obj)
+        return "\n".join(f"{item[0]}: {item[1]}" for item in obj) + "\n"
 
     if isinstance(obj, dict):
-        return "\n".join(f"{key}: {value}" for key, value in obj.items())
+        return "\n".join(f"{key}: {value}" for key, value in obj.items()) + "\n"
 
 
 def main():
