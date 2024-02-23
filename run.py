@@ -18,9 +18,9 @@ def get_user_recipe_choice():
     """
     Gets the users's recipe choice.
     """
-    print("Please choose a recipe from our recipe bank")
+    print("Please choose a recipe from our recipe bank.")
     print("Recipes to choose from:\n")
-    print("\n".join(worksheet_titles).title())
+    print("\n".join([title.title() for title in worksheet_titles]) + "\n")
 
     user_choice = input("Please enter your choice: \n").lower()
     print(f"You chose {user_choice}\n")
@@ -224,25 +224,21 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
 
 def display_recipe_metric(new_recipe):
 
-    formatted_new_recipe = custom_pformat(new_recipe)
-    print(formatted_new_recipe)
+    print(custom_print(new_recipe))
 
 
 def display_recipe_imperial(newer_recipe_imperial):
-    formatted_imperial_recipe = custom_pformat(newer_recipe_imperial)
-    print(formatted_imperial_recipe)
+
+    print(custom_print(newer_recipe_imperial))
 
 
-def custom_pformat(obj):
+def custom_print(obj):
 
     if isinstance(obj, list):
-        return "\n ".join(f"{item[0]}: {item[1]}" for item in obj)
+        return "\n".join(f"{item[0]}: {item[1]}" for item in obj)
 
     if isinstance(obj, dict):
-        return "\n ".join(f"{key}: {value}" for key, value in obj.items())
-
-    if isinstance(ob, str):
-        return ("\n".join(['\u2022 ' + item for item in items]))
+        return "\n".join(f"{key}: {value}" for key, value in obj.items())
 
 
 def main():
@@ -286,7 +282,7 @@ def main():
 
 
 print(
-    "Welcome to our recipe bank, where you can convert each recipe \n for the exact number of portions you are cooking"
+    "Welcome to our recipe bank, where you can convert each recipe \nfor the exact number of portions you are cooking"
 )
 if __name__ == "__main__":
     main()
