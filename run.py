@@ -174,47 +174,39 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
     for heading, measurement in new_recipe.items():
         conversion = False
 
-        try:
-            if "gram" in measurement:
-                quantity = measurement.split()[0]
-                converted_measurement_ounces = round(float(quantity) * 0.03527, 1)
-                converted_measurements.append(converted_measurement_ounces)
-                conversion = True
-                print("Converted_to_ounces:", converted_measurement_ounces, "ounces")
-        except KeyError:
-            pass
+       
+        if "gram" in measurement:
+            quantity = measurement.split()[0]
+            converted_measurement_ounces = round(float(quantity) * 0.03527, 1)
+            converted_measurements.append(converted_measurement_ounces)
+            conversion = True
+            print("Converted_to_ounces:", converted_measurement_ounces, "ounces")
+        
 
-        try:
-            if "dl" in measurement:
-                quantity = measurement.split()[0]
-                converted_measurement_dl_cups = round(float(quantity) * 0.422675284, 1)
-                converted_measurements.append(converted_measurement_dl_cups)
-                conversion = True
-                print(converted_measurement_dl_cups, "cups")
-        except KeyError:
-            pass
+        
+        if "dl" in measurement:
+            quantity = measurement.split()[0]
+            converted_measurement_dl_cups = round(float(quantity) * 0.422675284, 1)
+            converted_measurements.append(converted_measurement_dl_cups)
+            conversion = True
+            print(converted_measurement_dl_cups, "cups")
 
-        try:
-            if "kg" in measurement:
-                quantity = measurement.split()[0]
-                converted_measurement_pounds = round(float(quantity) * 2.2046, 1)
-                converted_measurements.append(converted_measurement_pounds)
-                conversion = True
-                print(converted_measurement_pounds, "pounds")
-        except KeyError:
-            pass
+        if "kg" in measurement:
+            quantity = measurement.split()[0]
+            converted_measurement_pounds = round(float(quantity) * 2.2046, 1)
+            converted_measurements.append(converted_measurement_pounds)
+            conversion = True
+            print(converted_measurement_pounds, "pounds")
 
-        try:
-            if "litres" in measurement:
-                quantity = measurement.split()[0]
-                converted_measurement_litres_cups = round(
-                    float(quantity) * 4.22675284, 1
-                )
-                converted_measurements.append(converted_measurement_litres_cups)
-                conversion = True
-                print(converted_measurement_litres_cups, "cups")
-        except KeyError:
-            pass
+        
+        if "litres" in measurement:
+            quantity = measurement.split()[0]
+            converted_measurement_litres_cups = round(
+            float(quantity) * 4.22675284, 1
+            )
+            converted_measurements.append(converted_measurement_litres_cups)
+            conversion = True
+            print(converted_measurement_litres_cups, "cups")
 
         if not conversion:
             unconverted_measurements.append([heading, measurement])
@@ -257,7 +249,6 @@ def main():
     """
 
     while True:
-
         user_choice = get_user_recipe_choice()
         user_choice = validate_user_recipe_choice(user_choice, worksheet_titles)
         user_portions = get_required_portions()
@@ -295,4 +286,5 @@ def main():
 print(
     "Welcome to our recipe bank, where you can convert each recipe \n for the exact number of portions you are cooking"
 )
-main()
+if __name__ == "__main__":
+    main()
