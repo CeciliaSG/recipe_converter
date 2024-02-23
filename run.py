@@ -224,12 +224,12 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
     headings_column = [row[0] for row in data[1:]]
     imperial_measurements = [row[3] for row in data[1:]]
 
-    new_recipe_imperial = {
-        heading: f"{measurement} {converted_measurement}"
+    new_recipe_imperial = [
+        (heading, f"{measurement} {converted_measurement}")
         for heading, measurement, converted_measurement in zip(
             headings_column, converted_measurements, imperial_measurements
         )
-    }
+    ]
     # print('new_recipe_imperial:', new_recipe_imperial)
     # unconverted_measurements_dict= { heading: measurement
     # for heading, measurement in zip(headings_column, unconverted_measurements)
@@ -247,8 +247,8 @@ def display_recipe_metric(new_recipe):
 
 
 def display_recipe_imperial(newer_recipe_imperial):
-    s = pformat(newer_recipe_imperial)
-    print("Recipe_imperial:", s)
+    # s = pformat(newer_recipe_imperial)
+    print(newer_recipe_imperial)
 
 
 def main():
