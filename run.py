@@ -1,7 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
 from pprint import pprint, pformat
-from collections import ChainMap
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -197,9 +196,7 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
 
         if "litres" in measurement:
             quantity = measurement.split()[0]
-            converted_measurement_litres_cups = round(
-            float(quantity) * 4.22675284, 1
-            )
+            converted_measurement_litres_cups = round(float(quantity) * 4.22675284, 1)
             converted_measurements.append(converted_measurement_litres_cups)
             conversion = True
             print(converted_measurement_litres_cups, "cups")
@@ -225,7 +222,7 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
     # }
     # print('unconverted_measurements:', unconverted_measurements)
 
-    newer_recipe_imperial = (new_recipe_imperial + unconverted_measurements)
+    newer_recipe_imperial = new_recipe_imperial + unconverted_measurements
     print("New:", new_recipe_imperial)
 
     return newer_recipe_imperial
@@ -235,16 +232,15 @@ def display_recipe_metric(new_recipe):
     print(new_recipe)
 
 
-def display_recipe_imperial(newer_recipe_imperial
-):
-    # units = imperial_measurements, metric_measurements
-    # newer_recipe_imperial = pformat(heading, measurement)
-    # chars_to_remove = ["{", "}", "'"]
-    # newer_recipe_imperial = newer_recipe_imperial.replace(char, "")
+def display_recipe_imperial(newer_recipe_imperial):
+    formatted_imperial_recipe = custom_pformat(newer_recipe_imperial)
+    print(formatted_imperial_recipe)
 
-    #newer_recipe_imperial = pformat(newer_recipe_imperial)
 
-    print(newer_recipe_imperial)
+def custom_pformat(obj):
+    if isinstance(obj, list):
+        return ", ".join(str(item[0]) for item in obj)
+
 
 def main():
     """
