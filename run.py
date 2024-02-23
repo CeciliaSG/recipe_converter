@@ -20,7 +20,7 @@ def get_user_recipe_choice():
     """
     print("Please choose a recipe from our recipe bank")
     print("Recipes to choose from:\n")
-    pprint(", ".join(worksheet_titles).title())
+    print("\n".join(worksheet_titles).title())
 
     user_choice = input("Please enter your choice: \n").lower()
     print(f"You chose {user_choice}\n")
@@ -34,7 +34,7 @@ def validate_user_recipe_choice(user_choice, worksheet_titles):
     """
     while True:
         if user_choice in worksheet_titles:
-            print(f"You have chosen {user_choice}. This recipe is available.")
+            print(f"You have chosen {user_choice}. This recipe is available.\n")
             break
         else:
             print(
@@ -54,7 +54,7 @@ def get_required_portions():
     for the recipe to use in calculation for ingredients amounts
     """
     while True:
-        print("Enter number of portions for recipe: ")
+        #print("Enter number of portions for recipe: ")
 
         try:
             user_portions = int(input("Please enter number of portions: \n"))
@@ -216,12 +216,6 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
         )
     ]
 
-    # print('new_recipe_imperial:', new_recipe_imperial)
-    # unconverted_measurements_dict= { heading: measurement
-    # for heading, measurement in zip(headings_column, unconverted_measurements)
-    # }
-    # print('unconverted_measurements:', unconverted_measurements)
-
     newer_recipe_imperial = new_recipe_imperial + unconverted_measurements
     print("New:", new_recipe_imperial)
 
@@ -229,7 +223,9 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
 
 
 def display_recipe_metric(new_recipe):
-    print(new_recipe)
+
+    formatted_new_recipe = custom_pformat(new_recipe)
+    print(formatted_new_recipe)
 
 
 def display_recipe_imperial(newer_recipe_imperial):
@@ -238,8 +234,15 @@ def display_recipe_imperial(newer_recipe_imperial):
 
 
 def custom_pformat(obj):
+
     if isinstance(obj, list):
-        return ", ".join(str(item[0]) for item in obj)
+        return "\n ".join(f"{item[0]}: {item[1]}" for item in obj)
+
+    if isinstance(obj, dict):
+        return "\n ".join(f"{key}: {value}" for key, value in obj.items())
+
+    if isinstance(ob, str):
+        return ("\n".join(['\u2022 ' + item for item in items]))
 
 
 def main():
