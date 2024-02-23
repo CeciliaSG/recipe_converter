@@ -174,16 +174,13 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
     for heading, measurement in new_recipe.items():
         conversion = False
 
-       
         if "gram" in measurement:
             quantity = measurement.split()[0]
             converted_measurement_ounces = round(float(quantity) * 0.03527, 1)
             converted_measurements.append(converted_measurement_ounces)
             conversion = True
             print("Converted_to_ounces:", converted_measurement_ounces, "ounces")
-        
 
-        
         if "dl" in measurement:
             quantity = measurement.split()[0]
             converted_measurement_dl_cups = round(float(quantity) * 0.422675284, 1)
@@ -198,7 +195,6 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
             conversion = True
             print(converted_measurement_pounds, "pounds")
 
-        
         if "litres" in measurement:
             quantity = measurement.split()[0]
             converted_measurement_litres_cups = round(
@@ -209,7 +205,7 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
             print(converted_measurement_litres_cups, "cups")
 
         if not conversion:
-            unconverted_measurements.append([heading, measurement])
+            unconverted_measurements.append((heading, measurement))
 
     print("unconverted_measurements1:", unconverted_measurements)
     data = SHEET.worksheet(user_choice).get_all_values()
@@ -222,14 +218,15 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
             headings_column, converted_measurements, imperial_measurements
         )
     ]
+
     # print('new_recipe_imperial:', new_recipe_imperial)
     # unconverted_measurements_dict= { heading: measurement
     # for heading, measurement in zip(headings_column, unconverted_measurements)
     # }
     # print('unconverted_measurements:', unconverted_measurements)
 
-    newer_recipe_imperial = ChainMap(new_recipe_imperial, unconverted_measurements)
-    print("New:", newer_recipe_imperial)
+    newer_recipe_imperial = (new_recipe_imperial + unconverted_measurements)
+    print("New:", new_recipe_imperial)
 
     return newer_recipe_imperial
 
@@ -238,10 +235,16 @@ def display_recipe_metric(new_recipe):
     print(new_recipe)
 
 
-def display_recipe_imperial(newer_recipe_imperial):
-    # s = pformat(newer_recipe_imperial)
-    print(newer_recipe_imperial)
+def display_recipe_imperial(newer_recipe_imperial
+):
+    # units = imperial_measurements, metric_measurements
+    # newer_recipe_imperial = pformat(heading, measurement)
+    # chars_to_remove = ["{", "}", "'"]
+    # newer_recipe_imperial = newer_recipe_imperial.replace(char, "")
 
+    #newer_recipe_imperial = pformat(newer_recipe_imperial)
+
+    print(newer_recipe_imperial)
 
 def main():
     """
