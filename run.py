@@ -154,6 +154,14 @@ def display_recipe_new_measurements(user_choice, new_measurements):
     }
     return new_recipe, metric_measurements
 
+def convert_large_metrics_to_new_units(new_recipe, metric_measurements):
+
+    for i, (metric_measurements) in enumerate(new_recipe):
+        if metric_measurements == 'gram' and measurement >= 1000:
+            new_measurement_kg = measurement / 10
+            metric_measurements[i] = 'kg'
+
+
 
 def convert_metrics_to_imperial_units(new_recipe, user_choice):
     """
