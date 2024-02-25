@@ -125,7 +125,7 @@ def calculate_user_measurements(ingredients_column, user_portions):
     """
 
     ingredients_float = [float(ingredient)
-                        for ingredient in ingredients_column]
+                         for ingredient in ingredients_column]
     new_measurements = [
         round(ingredient * user_portions, 1)
         for ingredient in ingredients_float
@@ -257,8 +257,9 @@ def custom_print(obj):
         return "\n".join(f"{item[0]}: {item[1]}" for item in obj) + "\n"
 
     if isinstance(obj, dict):
-        return "\n".join(f"{key}: {value}"
-        for key, value in obj.items()) + "\n"
+        return "\n".join(
+            f"{key}: {value}"
+            for key, value in obj.items()) + "\n"
 
 
 def main():
