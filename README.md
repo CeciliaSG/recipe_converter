@@ -36,7 +36,7 @@ Happy coding!
 
 [View the live project here.](https://recipe-converter-0e511cb84db5.herokuapp.com/)
 
-This is a recipe ingredient conversion app. It would most probably be part of a recipe site to facilitate the users experience by easily converting the recipe ingredients for number of portions and for either metric or imperial units.
+This is a recipe ingredient conversion app. It would most probably be part of a more extensive recipe site. The apps function is to facilitate the users experience, by easily converting the recipe ingredients for number of portions, and for either metric or imperial units.
 
 <h2 align="center"><img src="https://i.ibb.co/TYvTXz1/Example-CI.png"></h2>
 
@@ -237,14 +237,14 @@ python3-how-to-make-dictionary-from-list-using-dict-and-zip)
 - [Convert a dictionary to a string](https://stackoverflow.com/ai/search/38584)
 - [Writing a yes/no question](https://www.quora.com/I%E2%80%99m-new-to-Python-how-can-I-write-a-yes-no-question)
 - [Convert dict to concatenated string](https://www.geeksforgeeks.org/python-convert-dictionary-to-concatenated-string/)
-- [Isinstance](https://ioflood.com/blog/python-isinstance-function-guide-with-examples/)
-
-
--   [MDN Web Docs](https://developer.mozilla.org/) : For Pattern Validation code. Code was modified to better fit my needs and to match an Irish phone number layout to ensure correct validation. Tutorial Found [Here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/tel#Pattern_validation)
+- [Using if in to check a list](https://www.geeksforgeeks.org/check-if-element-exists-in-list-in-python/)
+- [Using Isinstance](https://ioflood.com/blog/python-isinstance-function-guide-with-examples/)
+- [if_name_equals](https://www.theserverside.com/tip/What-does-the-Python-if-name-equals-main-construct-do)
+    Added after advice from mentor.
 
 ### Content
 
--   All recipes/ingredient amounts were adapted from different recipes on the we or from my own recipes.
+-   All recipes/ingredient amounts were adapted from different recipes on the web or from my own recipes.
 
 
 ### Acknowledgements

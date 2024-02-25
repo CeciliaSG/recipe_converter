@@ -153,15 +153,19 @@ def display_recipe_new_measurements(user_choice, new_measurements):
     }
     print(new_measurements)
     print(metric_measurements)
+    print(new_recipe)
     return new_recipe, metric_measurements
 
 
-def convert_large_metrics_to_new_units(new_recipe, metric_measurements):
+def convert_large_metrics_to_new_units(new_measurements, new_recipe, metric_measurements):
 
     new_measurement_kg = []
 
-    for new_measurements in new_recipe.items():
-        if metric_measurements == "gram" and measurement >= 1000:
+    for new_measurements, metric_measurements in new_recipe.items():
+        #quantity = measurement.split()[0]
+        #print(quantity)
+        if 'gram' in metric_measurements and new_measurements >= 1000:
+        #if metric_measurements == "gram" and measurement >= 1000:
             new_measurement_kg.append(measurement / 10)
             metric_measurements = "kg"
 
@@ -287,7 +291,7 @@ def main():
                 new_recipe, user_choice)
         unit_choice = input_request_metric_imperial(
                 new_recipe, new_recipe_imperial)
-        convert_large_metrics_to_new_units(new_recipe, metric_measurements)
+        convert_large_metrics_to_new_units(new_recipe, metric_measurements, new_measurements)
 
         while True:
 
