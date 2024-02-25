@@ -77,7 +77,8 @@ def validate_user_portions(value):
     try:
         value = int(value)
         if value < 1 or value > 100:
-            raise ValueError(f"Choose a number between 1 and 100, you provided {value}")
+            raise ValueError(
+                    f"Choose a number between 1 and 100, you provided {value}")
     except ValueError as e:
         print(f"Not a correct choice: {e}")
         return False
