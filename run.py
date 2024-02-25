@@ -190,7 +190,6 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
 
     converted_measurements = []
     unconverted_measurements = []
-    converted_units = []
 
     for heading, measurement in new_recipe.items():
         conversion = False
@@ -213,7 +212,6 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
             converted_measurement_pounds = round(
                     float(quantity) * 2.2046, 1)
             converted_measurements.append(converted_measurement_pounds)
-            converted_unit = 'lbs'
             conversion = True
 
         if "litre(s)" in measurement:
@@ -224,18 +222,14 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
             conversion = True
 
         if not conversion:
-            unconverted_measurements.append((heading, measurement))
-            #converted_units.append(None)
-        else:
-            converted_units.append(converted_unit)    
+            unconverted_measurements.append((heading, measurement))   
 
-        print(converted_measurements)
     data = SHEET.worksheet(user_choice).get_all_values()
     headings_column = [row[0] for row in data[1:]]
     imperial_measurements = [row[3] for row in data[1:]]
 
     new_recipe_imperial = [
-        (heading, f"{measurement} {converted_measurement} {converted_unit}")
+        (heading, f"{measurement} {converted_measurement}")
         for heading, measurement, converted_measurement in zip(
             headings_column, converted_measurements, imperial_measurements
         )
