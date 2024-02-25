@@ -14,7 +14,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("recipe_converter")
 
 
-def get_user_recipe_choice():
+def get_user_recipe_choice(worksheet_titles):
     """
     Gets the users's recipe choice.
     """
@@ -45,16 +45,12 @@ def validate_user_recipe_choice(user_choice, worksheet_titles):
     return user_choice
 
 
-worksheet_titles = [worksheet.title.lower() for worksheet in SHEET.worksheets()]
-
-
 def get_required_portions():
     """
     Ask the user to input the required number of portions
     for the recipe to use in calculation for ingredients amounts
     """
     while True:
-        #print("Enter number of portions for recipe: ")
 
         try:
             user_portions = int(input("Please enter number of portions: \n"))
@@ -152,15 +148,23 @@ def display_recipe_new_measurements(user_choice, new_measurements):
             headings_column, new_measurements, metric_measurements
         )
     }
+
     return new_recipe, metric_measurements
+
 
 def convert_large_metrics_to_new_units(new_recipe, metric_measurements):
 
-    for i, (metric_measurements) in enumerate(new_recipe):
-        if metric_measurements == 'gram' and measurement >= 1000:
-            new_measurement_kg = measurement / 10
-            metric_measurements[i] = 'kg'
+    new_measurement_kg = []
 
+    for new_measurements in new_recipe.items():
+        if metric_measurements == 'gram' and measurement >= 1000:
+            new_measurement_kg.append(measurement / 10)
+            metric_measurements = "kg"
+
+    print(new_measurements)
+    print(metric_measurements)
+    print(new_measurement_kg)
+    return new_measurement_kg
 
 
 def convert_metrics_to_imperial_units(new_recipe, user_choice):
@@ -186,28 +190,24 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
             converted_measurement_ounces = round(float(quantity) * 0.03527, 1)
             converted_measurements.append(converted_measurement_ounces)
             conversion = True
-            #print("Converted_to_ounces:", converted_measurement_ounces, "ounces")
 
         if "dl" in measurement:
             quantity = measurement.split()[0]
             converted_measurement_dl_cups = round(float(quantity) * 0.422675284, 1)
             converted_measurements.append(converted_measurement_dl_cups)
             conversion = True
-            #print(converted_measurement_dl_cups, "cups")
 
         if "kg" in measurement:
             quantity = measurement.split()[0]
             converted_measurement_pounds = round(float(quantity) * 2.2046, 1)
             converted_measurements.append(converted_measurement_pounds)
             conversion = True
-            #print(converted_measurement_pounds, "pounds")
 
         if "litres" in measurement:
             quantity = measurement.split()[0]
             converted_measurement_litres_cups = round(float(quantity) * 4.22675284, 1)
             converted_measurements.append(converted_measurement_litres_cups)
             conversion = True
-            #print(converted_measurement_litres_cups, "cups")
 
         if not conversion:
             unconverted_measurements.append((heading, measurement))
@@ -224,7 +224,6 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
     ]
 
     newer_recipe_imperial = new_recipe_imperial + unconverted_measurements
-    #print("New:", new_recipe_imperial)
 
     return newer_recipe_imperial
 
@@ -244,7 +243,6 @@ def display_recipe_imperial(newer_recipe_imperial):
 
 
 def custom_print(obj):
-
     """
     Handle custom printing
     """
@@ -261,8 +259,10 @@ def main():
     Run all program functions
     """
 
+    worksheet_titles = [worksheet.title.lower() for worksheet in SHEET.worksheets()]
+
     while True:
-        user_choice = get_user_recipe_choice()
+        user_choice = get_user_recipe_choice(worksheet_titles)
         user_choice = validate_user_recipe_choice(user_choice, worksheet_titles)
         user_portions = get_required_portions()
         ingredients_column = get_user_choice_ingredients(user_choice)
@@ -274,6 +274,7 @@ def main():
         )
         new_recipe_imperial = convert_metrics_to_imperial_units(new_recipe, user_choice)
         unit_choice = input_request_metric_imperial(new_recipe, new_recipe_imperial)
+        convert_large_metrics_to_new_units(new_recipe, metric_measurements)
 
         while True:
 
