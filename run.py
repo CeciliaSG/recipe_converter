@@ -159,17 +159,12 @@ def display_recipe_new_measurements(user_choice, new_measurements):
 
 def convert_large_metrics_to_new_units(new_recipe):
 
-    new_measurement_kg = []
-
     for ingredient, measurement in new_recipe.items():
-        #print(f"ingredient: {ingredient}, measurement: {measurement}")
         quantity, unit = measurement.split()
         quantity = float(quantity)
         if unit == 'gram' and quantity >= 1000:
-            new_measurement_kg.append(quantity / 10)
             new_recipe[ingredient] = f"{quantity / 10} kg"
 
-    #print('new_measurement_kg:', new_measurement_kg)
     print(new_recipe)
     return new_recipe
 
