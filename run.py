@@ -34,12 +34,12 @@ def validate_user_recipe_choice(user_choice, worksheet_titles):
     """
     while True:
         if user_choice in worksheet_titles:
-            print(f"You have chosen {user_choice}. This recipe is available.\n")
+            print(f"You have chosen {user_choice}.")
+            print("This recipe is available.\n")
             break
         else:
-            print(
-                f"Your choice: {user_choice}. No such recipe. Please choose recipe in our recipe bank."
-            )
+            print(f"Your choice: {user_choice}. No such recipe.")
+            print("Please choose recipe in our recipe bank.")
             user_choice = input("Please enter your choice: ").lower()
 
     return user_choice
@@ -124,9 +124,11 @@ def calculate_user_measurements(ingredients_column, user_portions):
     chosen portions and recipe ingredients
     """
 
-    ingredients_float = [float(ingredient) for ingredient in ingredients_column]
+    ingredients_float = [float(ingredient)
+                        for ingredient in ingredients_column]
     new_measurements = [
-        round(ingredient * user_portions, 1) for ingredient in ingredients_float
+        round(ingredient * user_portions, 1)
+        for ingredient in ingredients_float
     ]
 
     return new_measurements
@@ -148,7 +150,8 @@ def display_recipe_new_measurements(user_choice, new_measurements):
             headings_column, new_measurements, metric_measurements
         )
     }
-
+    print(new_measurements)
+    print(metric_measurements)
     return new_recipe, metric_measurements
 
 
@@ -157,7 +160,7 @@ def convert_large_metrics_to_new_units(new_recipe, metric_measurements):
     new_measurement_kg = []
 
     for new_measurements in new_recipe.items():
-        if metric_measurements == 'gram' and measurement >= 1000:
+        if metric_measurements == "gram" and measurement >= 1000:
             new_measurement_kg.append(measurement / 10)
             metric_measurements = "kg"
 
@@ -193,19 +196,22 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
 
         if "dl" in measurement:
             quantity = measurement.split()[0]
-            converted_measurement_dl_cups = round(float(quantity) * 0.422675284, 1)
+            converted_measurement_dl_cups = round(
+                    float(quantity) * 0.422675284, 1)
             converted_measurements.append(converted_measurement_dl_cups)
             conversion = True
 
         if "kg" in measurement:
             quantity = measurement.split()[0]
-            converted_measurement_pounds = round(float(quantity) * 2.2046, 1)
+            converted_measurement_pounds = round(
+                    float(quantity) * 2.2046, 1)
             converted_measurements.append(converted_measurement_pounds)
             conversion = True
 
         if "litres" in measurement:
             quantity = measurement.split()[0]
-            converted_measurement_litres_cups = round(float(quantity) * 4.22675284, 1)
+            converted_measurement_litres_cups = round(
+                    float(quantity) * 4.22675284, 1)
             converted_measurements.append(converted_measurement_litres_cups)
             conversion = True
 
@@ -251,7 +257,8 @@ def custom_print(obj):
         return "\n".join(f"{item[0]}: {item[1]}" for item in obj) + "\n"
 
     if isinstance(obj, dict):
-        return "\n".join(f"{key}: {value}" for key, value in obj.items()) + "\n"
+        return "\n".join(f"{key}: {value}"
+        for key, value in obj.items()) + "\n"
 
 
 def main():
@@ -259,7 +266,8 @@ def main():
     Run all program functions
     """
 
-    worksheet_titles = [worksheet.title.lower() for worksheet in SHEET.worksheets()]
+    worksheet_titles = [worksheet.title.lower()
+                        for worksheet in SHEET.worksheets()]
 
     while True:
         user_choice = get_user_recipe_choice(worksheet_titles)
@@ -297,8 +305,8 @@ def main():
     print("Thank you for using our recipe converter.")
 
 
-print(
-    "Welcome to our recipe bank, where you can convert each recipe \nfor the exact number of portions you are cooking"
-)
+print("Welcome to our recipe bank,")
+print("where you can convert each recipe")
+print("for the exact number of portions you are cooking")
 if __name__ == "__main__":
     main()
