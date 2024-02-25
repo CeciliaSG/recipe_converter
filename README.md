@@ -37,6 +37,7 @@ Happy coding!
 [View the live project here.](https://codeinstitute.net)
 
 This is a recipe ingredient conversion app. It would most probably be part of a recipe site to facilitate the users experience by easily converting the recipe ingredients for number of portions and for either metric or imperial units.
+
 <h2 align="center"><img src="https://i.ibb.co/TYvTXz1/Example-CI.png"></h2>
 
 ## User Experience (UX)
@@ -238,8 +239,15 @@ Connect your GitHub repository and deploy as normal.
 ### Code
 
 -   To import the gspread library, setting the APIs, and getting the data from this worksheet, I used the walkthrough project love-sandwich as a guide.
+- [Making dict from list of tuples](https://stackoverflow.com/questions/48902085/
+python3-how-to-make-dictionary-from-list-using-dict-and-zip)
+- [Using Zip](https://stackoverflow.com/questions/49783594/for-loop-and-zip-in-python/49783740#49783740)
+- [Using slice](https://stackoverflow.com/questions/17513438/csvreader-next-function/17513447#17513447)
+- [Convert a dictionary to a string](https://stackoverflow.com/ai/search/38584)
+- [Writing a yes/no question](https://www.quora.com/I%E2%80%99m-new-to-Python-how-can-I-write-a-yes-no-question)
+- [Convert dict to concatenated string](https://www.geeksforgeeks.org/python-convert-dictionary-to-concatenated-string/)
+- [Isinstance](https://ioflood.com/blog/python-isinstance-function-guide-with-examples/)
 
--   [Bootstrap4](https://getbootstrap.com/docs/4.4/getting-started/introduction/): Bootstrap Library used throughout the project mainly to make site responsive using the Bootstrap Grid System.
 
 -   [MDN Web Docs](https://developer.mozilla.org/) : For Pattern Validation code. Code was modified to better fit my needs and to match an Irish phone number layout to ensure correct validation. Tutorial Found [Here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/tel#Pattern_validation)
 
