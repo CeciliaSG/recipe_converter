@@ -160,8 +160,19 @@ def convert_large_metrics_to_new_units(new_recipe):
     for ingredient, measurement in new_recipe.items():
         quantity, unit = measurement.split()
         quantity = float(quantity)
+
         if unit == "gram" and quantity >= 1000:
             new_recipe[ingredient] = f"{quantity / 10} kg"
+
+        if unit == "dl" and quantity >= 10:
+            new_recipe[ingredient] = f"{quantity / 10} litre(s)"
+
+        if unit == "tsp" and quantity >= 3:
+            new_recipe[ingredient] = f"{quantity / 3} tbsp"  
+
+        if unit == "tbsp" and quantity >= 6.7:
+            new_recipe[ingredient] = f"{quantity / 10} dl"      
+
     return new_recipe
 
 
