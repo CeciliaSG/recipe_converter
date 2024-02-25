@@ -143,36 +143,36 @@ def display_recipe_new_measurements(user_choice, new_measurements):
     data = SHEET.worksheet(user_choice).get_all_values()
     headings_column = [row[0] for row in data[1:]]
 
-    metric_measurements = [row[1] for row in data[1:]]
+    metric_measurements_column = [row[1] for row in data[1:]]
 
     new_recipe = {
         heading: f"{measurement} {metric_measurements}"
         for heading, measurement, metric_measurements in zip(
-            headings_column, new_measurements, metric_measurements
+            headings_column, new_measurements, metric_measurements_column
         )
     }
-    print(new_measurements)
-    print(metric_measurements)
-    print(new_recipe)
-    return new_recipe, metric_measurements
+    #print('new_measurements:',new_measurements)
+    #print('metric_measurements_column1:', metric_measurements_column)
+    #print('new_recipe:', new_recipe)
+    return new_recipe, metric_measurements_column
 
 
-def convert_large_metrics_to_new_units(new_measurements, new_recipe, metric_measurements):
+def convert_large_metrics_to_new_units(new_recipe):
 
     new_measurement_kg = []
 
-    for new_measurements, metric_measurements in new_recipe.items():
-        #quantity = measurement.split()[0]
-        #print(quantity)
-        if 'gram' in metric_measurements and new_measurements >= 1000:
-        #if metric_measurements == "gram" and measurement >= 1000:
-            new_measurement_kg.append(measurement / 10)
-            metric_measurements = "kg"
+    for ingredient, measurement in new_recipe.items():
+        #print(f"ingredient: {ingredient}, measurement: {measurement}")
+        quantity, unit = measurement.split()
+        quantity = float(quantity)
+        if unit == 'gram' and quantity >= 1000:
+            new_measurement_kg.append(quantity / 10)
+            new_recipe[ingredient] = f"{quantity / 10} kg"
 
-    print(new_measurements)
-    print(metric_measurements)
-    print(new_measurement_kg)
-    return new_measurement_kg
+    #print('new_measurement_kg:', new_measurement_kg)
+    print(new_recipe)
+    return new_recipe
+
 
 
 def convert_metrics_to_imperial_units(new_recipe, user_choice):
@@ -284,14 +284,14 @@ def main():
         new_measurements = calculate_user_measurements(
             ingredients_column, user_portions
         )
-        new_recipe, metric_measurements = display_recipe_new_measurements(
+        new_recipe, metric_measurements_column = display_recipe_new_measurements(
             user_choice, new_measurements
         )
         new_recipe_imperial = convert_metrics_to_imperial_units(
                 new_recipe, user_choice)
         unit_choice = input_request_metric_imperial(
                 new_recipe, new_recipe_imperial)
-        convert_large_metrics_to_new_units(new_recipe, metric_measurements, new_measurements)
+        new_recipe = convert_large_metrics_to_new_units(new_recipe)
 
         while True:
 
