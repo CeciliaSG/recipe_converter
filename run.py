@@ -164,14 +164,17 @@ def convert_large_metrics_to_new_units(new_recipe):
         if unit == "dl" and quantity >= 10:
             new_recipe[ingredient] = f"{quantity / 10} litre(s)"
 
-        # if unit == "tsp" and quantity >= 3:
-        # new_recipe[ingredient] = f"{quantity / 3} tbsp"
+        if unit == "tsp" and quantity >= 3:
+            quantity_rounded = round(quantity / 3, 1)
+            new_recipe[ingredient] = f"{quantity_rounded} tbsp"
 
         # if unit == "tbsp" and quantity >= 6.7:
         # new_recipe[ingredient] = f"{quantity / 6.8} dl"
-        #
+    
     print("new_recipe:", new_recipe)
     return new_recipe
+
+    
 
 
 def convert_metrics_to_imperial_units(new_recipe, user_choice):
@@ -245,7 +248,7 @@ def convert_large_imperial_to_new_units(newer_recipe_imperial):
 
         if unit == "ounces" and quantity >= 16:
             measurement = round(quantity / 16, 1)
-            newer_recipe_imperial[i] = ingredient, f"{measurement}pounds"
+            newer_recipe_imperial[i] = ingredient, f"{measurement} pounds"
 
     return newer_recipe_imperial
 
