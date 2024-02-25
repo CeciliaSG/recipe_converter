@@ -151,7 +151,7 @@ def display_recipe_new_measurements(user_choice, new_measurements):
             headings_column, new_measurements, metric_measurements_column
         )
     }
-
+    print('new_reipe:', new_recipe)
     return new_recipe, metric_measurements_column
 
 
@@ -167,12 +167,12 @@ def convert_large_metrics_to_new_units(new_recipe):
         if unit == "dl" and quantity >= 10:
             new_recipe[ingredient] = f"{quantity / 10} litre(s)"
 
-        if unit == "tsp" and quantity >= 3:
-            new_recipe[ingredient] = f"{quantity / 3} tbsp"  
+        #if unit == "tsp" and quantity >= 3:
+            #new_recipe[ingredient] = f"{quantity / 3} tbsp"  
 
-        if unit == "tbsp" and quantity >= 6.7:
-            new_recipe[ingredient] = f"{quantity / 10} dl"      
-
+        #if unit == "tbsp" and quantity >= 6.7:
+            #new_recipe[ingredient] = f"{quantity / 6.8} dl"      
+    print('new_recipe:', new_recipe)
     return new_recipe
 
 
@@ -190,6 +190,7 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
 
     converted_measurements = []
     unconverted_measurements = []
+    converted_units = []
 
     for heading, measurement in new_recipe.items():
         conversion = False
@@ -212,9 +213,10 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
             converted_measurement_pounds = round(
                     float(quantity) * 2.2046, 1)
             converted_measurements.append(converted_measurement_pounds)
+            converted_unit = 'lbs'
             conversion = True
 
-        if "litres" in measurement:
+        if "litre(s)" in measurement:
             quantity = measurement.split()[0]
             converted_measurement_litres_cups = round(
                     float(quantity) * 4.22675284, 1)
@@ -223,13 +225,17 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
 
         if not conversion:
             unconverted_measurements.append((heading, measurement))
+            #converted_units.append(None)
+        else:
+            converted_units.append(converted_unit)    
 
+        print(converted_measurements)
     data = SHEET.worksheet(user_choice).get_all_values()
     headings_column = [row[0] for row in data[1:]]
     imperial_measurements = [row[3] for row in data[1:]]
 
     new_recipe_imperial = [
-        (heading, f"{measurement} {converted_measurement}")
+        (heading, f"{measurement} {converted_measurement} {converted_unit}")
         for heading, measurement, converted_measurement in zip(
             headings_column, converted_measurements, imperial_measurements
         )
