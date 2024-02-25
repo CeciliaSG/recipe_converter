@@ -32,9 +32,9 @@ The deployment terminal is set to 80 columns by 24 rows. That means that each li
 Happy coding!
 
 
-<h1 align="center">Code Institute Website</h1>
+<h1 align="center">Recipe Ingredient Converter</h1>
 
-[View the live project here.](https://codeinstitute.net)
+[View the live project here.](https://recipe-converter-0e511cb84db5.herokuapp.com/)
 
 This is a recipe ingredient conversion app. It would most probably be part of a recipe site to facilitate the users experience by easily converting the recipe ingredients for number of portions and for either metric or imperial units.
 
@@ -69,19 +69,13 @@ This is a recipe ingredient conversion app. It would most probably be part of a 
     -   #### Imagery
         -   Imagery is important. The large, background hero image is designed to be striking and catch the user's attention. It also has a modern, energetic aesthetic.
 
-*   ### Wireframes
+*   ### Flowchart
 
     -   Lucidchart  - [View](https://github.com/)
 
-    -   Mobile Wireframe - [View](https://github.com/)
-
-    -   Contact Us Page Wireframe - [View](https://github.com/)
-
 ## Features
+[Spreadsheet](https://docs.google.com/spreadsheets/d/1HxRmrXuh0vBWrZJDnR1j-UeINHnjVnlFtAIUtNRiUoE/edit?pli=1#gid=1522122947)
 
--   Responsive on all device sizes
-
--   Interactive elements
 
 ## Technologies Used
 
@@ -92,14 +86,11 @@ This is a recipe ingredient conversion app. It would most probably be part of a 
 ### Frameworks, Libraries & Programs Used
 
 1. [gspread:](https://docs.gspread.org/en/latest/)
-    - Hover.css was used on the Social Media icons in the footer to add the float transition while being hovered over.
-1. [Git](https://git-scm.com/)
+2. [Git](https://git-scm.com/)
     - Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
-1. [GitHub:](https://github.com/)
+2. [GitHub:](https://github.com/)
     - GitHub is used to store the projects code after being pushed from Git.
-1. [Photoshop:](https://www.adobe.com/ie/products/photoshop.html)
-    - Photoshop was used to create the logo, resizing images and editing photos for the website.
-1. [Lucidchart:](https://lucid.app/)
+4. [Lucidchart:](https://lucid.app/)
     - Lucidchart was used to create the flowchart during initial development. To visualise the...
 
 ## Testing
