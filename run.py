@@ -152,6 +152,19 @@ def display_recipe_new_measurements(user_choice, new_measurements):
     return new_recipe, metric_measurements_column
 
 
+def convert_tbsp_to_dl(new_recipe):
+    for ingredient, measurement in new_recipe.items():
+        quantity, unit = measurement.split()
+        quantity = float(quantity)
+
+    if unit == "tbsp" and quantity >= 6.7:
+        qunatity_rounded = round(quantity / 6.7, 1)
+        new_recipe[ingredient] = f"{qunatity_rounded} dl"
+
+    print(new_recipe)
+    return new_recipe
+
+
 def convert_large_metrics_to_new_units(new_recipe):
 
     for ingredient, measurement in new_recipe.items():
@@ -168,13 +181,8 @@ def convert_large_metrics_to_new_units(new_recipe):
             quantity_rounded = round(quantity / 3, 1)
             new_recipe[ingredient] = f"{quantity_rounded} tbsp"
 
-        # if unit == "tbsp" and quantity >= 6.7:
-        # new_recipe[ingredient] = f"{quantity / 6.8} dl"
-    
     print("new_recipe:", new_recipe)
     return new_recipe
-
-    
 
 
 def convert_metrics_to_imperial_units(new_recipe, user_choice):
@@ -234,6 +242,7 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
     ]
     print("new_recipe_imperial:", new_recipe_imperial)
     print("newer_recipe_imperial:", new_recipe_imperial)
+    print(unconverted_measurements)
     newer_recipe_imperial = new_recipe_imperial + unconverted_measurements
 
     return new_recipe_imperial, newer_recipe_imperial
@@ -298,6 +307,8 @@ def main():
             user_choice, new_measurements
         )
         new_recipe = convert_large_metrics_to_new_units(new_recipe)
+
+        new_recipe = convert_tbsp_to_dl(new_recipe)
 
         newer_recipe_imperial, new_recipe_imperial = convert_metrics_to_imperial_units(
             new_recipe, user_choice
