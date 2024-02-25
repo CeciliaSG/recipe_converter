@@ -271,7 +271,8 @@ def main():
 
     while True:
         user_choice = get_user_recipe_choice(worksheet_titles)
-        user_choice = validate_user_recipe_choice(user_choice, worksheet_titles)
+        user_choice = validate_user_recipe_choice(
+                user_choice, worksheet_titles)
         user_portions = get_required_portions()
         ingredients_column = get_user_choice_ingredients(user_choice)
         new_measurements = calculate_user_measurements(
@@ -280,8 +281,10 @@ def main():
         new_recipe, metric_measurements = display_recipe_new_measurements(
             user_choice, new_measurements
         )
-        new_recipe_imperial = convert_metrics_to_imperial_units(new_recipe, user_choice)
-        unit_choice = input_request_metric_imperial(new_recipe, new_recipe_imperial)
+        new_recipe_imperial = convert_metrics_to_imperial_units(
+                new_recipe, user_choice)
+        unit_choice = input_request_metric_imperial(
+                new_recipe, new_recipe_imperial)
         convert_large_metrics_to_new_units(new_recipe, metric_measurements)
 
         while True:
