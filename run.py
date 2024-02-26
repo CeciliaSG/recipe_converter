@@ -217,33 +217,37 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
                 if metric_unit == "gram":
                     converted_measurement_ounces = round(
                     float(quantity) * 0.03527, 1)
-                converted_measurements.append((converted_measurement_ounces, 'ounces'))
+                    converted_measurements.append(
+                    (converted_measurement_ounces, 'ounces'))
                 conversion = True
-                break
+                
 
-            elif "dl" in measurement:
+            if "dl" in measurement:
                 quantity = measurement.split()[0]
                 converted_measurement_dl_cups = round(
                     float(quantity) * 0.422675284, 1)
-                converted_measurements.append((converted_measurement_dl_cups, 'cups'))
+                converted_measurements.append(
+                    (converted_measurement_dl_cups, 'cups'))
                 conversion = True
-                break
+                
 
-            elif "kg" in measurement:
+            if "kg" in measurement:
                 quantity = measurement.split()[0]
                 converted_measurement_pounds = round(
                     float(quantity) * 2.2046, 1)
-                converted_measurements.append((converted_measurement_pounds, 'pounds'))
+                converted_measurements.append(
+                    (converted_measurement_pounds, 'pounds'))
                 conversion = True 
-                break
+                
 
-            elif "litre(s)" in measurement:
+            if "litre(s)" in measurement:
                 quantity = measurement.split()[0]
                 converted_measurement_litres_cups = round(
                     float(quantity) * 4.22675284, 1)
-                converted_measurements.append((converted_measurement_litres_cups, 'cups'))
+                converted_measurements.append(
+                    (converted_measurement_litres_cups, 'cups'))
                 conversion = True
-                break
+                
 
         if not conversion:
                 unconverted_measurements.append((heading, measurement))       
@@ -252,7 +256,7 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
     headings_column = [row[0] for row in data[1:]]
     #imperial_measurements = [row[3] for row in data[1:]]
 
-    print('unconverted:', unconverted_measurements)
+    #print('unconverted:', unconverted_measurements)
 
     new_recipe_imperial = [
         (heading, f"{converted_measurement} {unit}")
