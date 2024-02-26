@@ -16,14 +16,12 @@ The app converts ingredient amounts from one upto 100 portions. It also converts
 
         - As a visitor/user of the conversion app, I want to easily understand how it works, the main purpose and have it facilitate my cooking by making it simple to get the correct measurements for the number of people I am cooking for.
      
-
 ## Flowchart
 <h2 align="center"><img src="documentation/lucidchart.png"></h2>
 
-## Features
-[Spreadsheet](https://docs.google.com/spreadsheets/d/1HxRmrXuh0vBWrZJDnR1j-UeINHnjVnlFtAIUtNRiUoE/edit?pli=1#gid=1522122947)
+### Future features and usage, things to change or do differently
 
-## Future features and usage
+Creating the app has been a great learning experience, and if I had more time I would now go back and change a few things. One would be that I should have stored all values and keys in the program and built a function for the calculations. This is something I have ralised along the way, but now don't have time to go back and change.
 
 ### Languages Used
 
@@ -153,7 +151,7 @@ Steps to follow for deployment to Heroku:
     1. `heroku/python`
     2. `heroku/nodejs`
 
-5.	In the Buildpacks section, add buildpacks. Note order in which you add buildpacks :Python first and nodejs.
+5.	In the Buildpacks section, add buildpacks. Note order in which you add buildpacks: Python first and nodejs.
 6.	No go to Deployment. In deployment method click on "GitHub"(for repository)
 7.	The connect to GitHub, find your repository and click  connect.
 8.	Under connect to GitHub-section, you can either chose automatic deploys with Enable Automatic Deploys or Manual Deploy, to deploy manually.
