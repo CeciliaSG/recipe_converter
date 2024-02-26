@@ -114,6 +114,10 @@ def get_user_choice_ingredients(user_choice):
 
     ingredients_column = [row[2] for row in ingredients[1:]]
 
+    for i in range(len(ingredients_column)):
+        ingredients_column[i] = float(
+                ingredients_column[i].replace(',', '.'))
+
     return ingredients_column
 
 

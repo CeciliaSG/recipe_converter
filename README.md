@@ -178,6 +178,8 @@ Steps to follow for deployment to Heroku:
 - [Using range and len](https://www.freecodecamp.org/news/python-range-function-example/)
 - [Using len and range](https://stackoverflow.com/questions/19184335/is-there-a-need-for-rangelena)
 - [Local variable referenced before assignment in Python](https://byby.dev/py-local-variable)
+- [Convering strings with commas to floats, localised formats](https://ioflood.com/blog/convert-string-to-float-python/)
+- [Convering strings with commas to floats, localised formats](https://stackoverflow.com/questions/64951352/converting-string-to-float-with-as-thousands-separator-123-000-12-to-123)
 
 ### Content
 
