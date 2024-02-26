@@ -148,7 +148,6 @@ def display_recipe_new_measurements(user_choice, new_measurements):
             headings_column, new_measurements, metric_measurements_column
         )
     }
-    print('new_recipe:', new_recipe)
     return new_recipe, metric_measurements_column
 
 
@@ -161,7 +160,6 @@ def convert_tbsp_to_dl(new_recipe):
             quantity_rounded = round(quantity / 6.7, 1)
             new_recipe[ingredient] = f"{quantity_rounded} dl"
 
-    print('Metric:', new_recipe)
     return new_recipe
 
 
@@ -186,6 +184,7 @@ def convert_large_metrics_to_new_units(new_recipe):
     return new_recipe
 
 
+
 def convert_metrics_to_imperial_units(new_recipe, user_choice):
     """
     Convert the new_recipe metric units to imperial
@@ -197,58 +196,74 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
     1litre = 4.22675284 cups
     1dl = 0.422675284 cups
     """
-    print('NR!:', new_recipe)
+  
     converted_measurements = []
     unconverted_measurements = []
-
+     
+    conversion_mappings = [
+    ('gram', 'ounces'),
+    ('dl', 'cups'),
+    ('kg', 'pounds'),
+    ('litre(s)', 'cups')
+]
+    
     for heading, measurement in new_recipe.items():
         conversion = False
+        
+        for metric_unit, imperial_unit in conversion_mappings:
+        
+            if metric_unit in measurement:
+                quantity = measurement.split()[0]
+                if metric_unit == "gram":
+                    converted_measurement_ounces = round(
+                    float(quantity) * 0.03527, 1)
+                converted_measurements.append((converted_measurement_ounces, 'ounces'))
+                conversion = True
+                break
 
-        if "gram" in measurement:
-            quantity = measurement.split()[0]
-            converted_measurement_ounces = round(
-                float(quantity) * 0.03527, 1)
-            converted_measurements.append(converted_measurement_ounces)
-            conversion = True
+            elif "dl" in measurement:
+                quantity = measurement.split()[0]
+                converted_measurement_dl_cups = round(
+                    float(quantity) * 0.422675284, 1)
+                converted_measurements.append((converted_measurement_dl_cups, 'cups'))
+                conversion = True
+                break
 
-        if "dl" in measurement:
-            quantity = measurement.split()[0]
-            converted_measurement_dl_cups = round(
-                float(quantity) * 0.422675284, 1)
-            converted_measurements.append(converted_measurement_dl_cups)
-            conversion = True
+            elif "kg" in measurement:
+                quantity = measurement.split()[0]
+                converted_measurement_pounds = round(
+                    float(quantity) * 2.2046, 1)
+                converted_measurements.append((converted_measurement_pounds, 'pounds'))
+                conversion = True 
+                break
 
-        if "kg" in measurement:
-            quantity = measurement.split()[0]
-            converted_measurement_pounds = round(
-                float(quantity) * 2.2046, 1)
-            converted_measurements.append((converted_measurement_pounds, 'lbs'))
-            conversion = True
-
-        if "litre(s)" in measurement:
-            quantity = measurement.split()[0]
-            converted_measurement_litres_cups = round(
-                float(quantity) * 4.22675284, 1)
-            converted_measurements.append(converted_measurement_litres_cups)
-            conversion = True
+            elif "litre(s)" in measurement:
+                quantity = measurement.split()[0]
+                converted_measurement_litres_cups = round(
+                    float(quantity) * 4.22675284, 1)
+                converted_measurements.append((converted_measurement_litres_cups, 'cups'))
+                conversion = True
+                break
 
         if not conversion:
-            unconverted_measurements.append((heading, measurement))       
+                unconverted_measurements.append((heading, measurement))       
 
     data = SHEET.worksheet(user_choice).get_all_values()
     headings_column = [row[0] for row in data[1:]]
-    imperial_measurements = [row[3] for row in data[1:]]
+    #imperial_measurements = [row[3] for row in data[1:]]
+
+    print('unconverted:', unconverted_measurements)
 
     new_recipe_imperial = [
-        (heading, f"{measurement} {converted_measurement}")
-        for heading, measurement, converted_measurement in zip(
-            headings_column, converted_measurements, imperial_measurements
-        )
+        (heading, f"{converted_measurement} {unit}")
+        for heading, (converted_measurement, unit) in zip(headings_column, converted_measurements)
     ]
+
     newer_recipe_imperial = new_recipe_imperial + unconverted_measurements
     print('newer:', newer_recipe_imperial)
+    print('new:', new_recipe_imperial)
     return new_recipe_imperial, newer_recipe_imperial
-
+  
 
 
 def display_recipe_metric(new_recipe):
