@@ -142,16 +142,24 @@ Steps to follow for deployment to Heroku:
 1. Navigate to the repository for the project. 
 
 ### In Heroku
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
 
-1. `heroku/python`
-2. `heroku/nodejs`
+1.	Go to Heroku, create account, if you don't have one, and log in.
+2.	Go to the dashboard and click New after which you click Create new app
+3.	Choose name and region. Click Create app
+4.	Go to Settings, under the "Config Vars" set your Key/Value Pairs.
+    You must then create a _Config Var_ called `PORT`. Set this to `8000`
+    If you have credentials, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+    When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+    1. `heroku/python`
+    2. `heroku/nodejs`
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+5.	In the Buildpacks section, add buildpacks. Note order in which you add buildpacks :Python first and nodejs.
+6.	No go to Deployment. In deployment method click on "GitHub"(for repository)
+7.	The connect to GitHub, find your repository and click  connect.
+8.	Under connect to GitHub-section, you can either chose automatic deploys with Enable Automatic Deploys or Manual Deploy, to deploy manually.
+    
+    **Now you can view the deployed app.**
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
 
 ## Credits
 
@@ -171,6 +179,7 @@ Connect your GitHub repository and deploy as normal.
     Added after advice from mentor.
 - [Using range and len](https://www.freecodecamp.org/news/python-range-function-example/)
 - [Using len and range](https://stackoverflow.com/questions/19184335/is-there-a-need-for-rangelena)
+- [Local variable referenced before assignment in Python](https://byby.dev/py-local-variable)
 
 ### Content
 
