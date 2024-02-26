@@ -290,7 +290,6 @@ def custom_print(obj):
             f"{key}: {value}"
             for key, value in obj.items()) + "\n"
 
-
 def main():
     """
     Run all program functions

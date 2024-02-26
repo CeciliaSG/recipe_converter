@@ -1,40 +1,6 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
-
-Welcome,
-
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
-
-## Reminders
-
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
----
-
-Happy coding!
-
-
 <h1 align="center">Recipe Ingredient Converter</h1>
 
-[View the live project here.](https://recipe-converter-0e511cb84db5.herokuapp.com/)
+**[View the live project here](https://recipe-converter-0e511cb84db5.herokuapp.com/) and the [Spreadsheet here]([Spreadsheet](https://docs.google.com/spreadsheets/d/1HxRmrXuh0vBWrZJDnR1j-UeINHnjVnlFtAIUtNRiUoE/edit?pli=1#gid=1522122947))**
 
 This is a recipe ingredient conversion app. It would most probably be part of a more extensive recipe site. The apps function is to facilitate the users experience, by easily converting the recipe ingredients for number of portions, and for either metric or imperial units.
 
@@ -61,23 +27,13 @@ This is a recipe ingredient conversion app. It would most probably be part of a 
         2. As a Frequent User, I want to check to see if there are any new blog posts.
         3. As a Frequent User, I want to sign up to the Newsletter so that I am emailed any major updates and/or changes to the website or organisation.
 
--   ### Design
-    -   #### Colour Scheme
-        -   The two main colours used are Code Insititue red, and white.
-    -   #### Typography
-        -   The Montserrat font is the main font used throughout the whole website with Sans Serif as the fallback font in case for any reason the font isn't being imported into the site correctly. Montserrat is a clean font used frequently in programming, so it is both attractive and appropriate.
-    -   #### Imagery
-        -   Imagery is important. The large, background hero image is designed to be striking and catch the user's attention. It also has a modern, energetic aesthetic.
-
-*   ### Flowchart
-
-    -   Lucidchart  - [View](https://github.com/)
+## Flowchart
+<h2 align="center"><img src="documentation/lucidchart.png"></h2>
 
 ## Features
 [Spreadsheet](https://docs.google.com/spreadsheets/d/1HxRmrXuh0vBWrZJDnR1j-UeINHnjVnlFtAIUtNRiUoE/edit?pli=1#gid=1522122947)
 
-
-## Technologies Used
+## Future features and usage
 
 ### Languages Used
 
@@ -86,17 +42,18 @@ This is a recipe ingredient conversion app. It would most probably be part of a 
 ### Frameworks, Libraries & Programs Used
 
 1. [gspread:](https://docs.gspread.org/en/latest/)
+    - Google spreadshees was used to store the recipe ingredients, measurements and units.
 2. [Git](https://git-scm.com/)
     - Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
 2. [GitHub:](https://github.com/)
     - GitHub is used to store the projects code after being pushed from Git.
 4. [Lucidchart:](https://lucid.app/)
-    - Lucidchart was used to create the flowchart during initial development. To visualise the...
+    - Lucidchart was used to create the flowchart during initial development. To visualise theflow of the program. During the development steps were added that wern't initially in the flowchart.
 
 ## Testing
 
-The CI Python Linter was used to check the code.
--   [CI Python Linter](https://pep8ci.herokuapp.com/#) - [Results](https://github.com/)
+The CI Python Linter was used to check the code. On the first few checks there were some warning for long lines and white spaces which were then fixed.
+-   [CI Python Linter](https://pep8ci.herokuapp.com/#) - [Results](documentation/ci_python_linter.png/)
 
 ### Testing User Stories from User Experience (UX) Section
 
@@ -157,6 +114,13 @@ The CI Python Linter was used to check the code.
 ### Further Testing
 
 -   The apps functionality was tested all through the development process.
+
+Manual testing:
+
+| Syntax | Description |
+| ----------- | ----------- |
+| Header | Title |
+| Paragraph | Text |
 
 ### Known Bugs
 
@@ -229,7 +193,7 @@ Connect your GitHub repository and deploy as normal.
 
 ### Code
 
--   To import the gspread library, setting the APIs, and getting the data from this worksheet, I used the walkthrough project love-sandwich as a guide.
+- To import the gspread library, setting the APIs, and getting the data from this worksheet, I used the walkthrough project love-sandwich as a guide.
 - [Making dict from list of tuples](https://stackoverflow.com/questions/48902085/
 python3-how-to-make-dictionary-from-list-using-dict-and-zip)
 - [Using Zip](https://stackoverflow.com/questions/49783594/for-loop-and-zip-in-python/49783740#49783740)
@@ -239,8 +203,11 @@ python3-how-to-make-dictionary-from-list-using-dict-and-zip)
 - [Convert dict to concatenated string](https://www.geeksforgeeks.org/python-convert-dictionary-to-concatenated-string/)
 - [Using if in to check a list](https://www.geeksforgeeks.org/check-if-element-exists-in-list-in-python/)
 - [Using Isinstance](https://ioflood.com/blog/python-isinstance-function-guide-with-examples/)
+                    (https://ioflood.com/blog/python-isinstance-function-guide-with-examples/)
 - [if_name_equals](https://www.theserverside.com/tip/What-does-the-Python-if-name-equals-main-construct-do)
     Added after advice from mentor.
+- [Using range and len](https://www.freecodecamp.org/news/python-range-function-example/)
+- [Using len and range](https://stackoverflow.com/questions/19184335/is-there-a-need-for-rangelena)
 
 ### Content
 
