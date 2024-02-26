@@ -174,10 +174,12 @@ def convert_large_metrics_to_new_units(new_recipe):
         quantity = float(quantity)
 
         if unit == "gram" and quantity >= 1000:
-            new_recipe[ingredient] = f"{quantity / 1000} kg"
+            quantity_rounded = round(quantity / 1000, 1)
+            new_recipe[ingredient] = f"{quantity_rounded} kg"
 
         if unit == "dl" and quantity >= 10:
-            new_recipe[ingredient] = f"{quantity / 10} litre(s)"
+            quantity_rounded = round(quantity / 10, 1)
+            new_recipe[ingredient] = f"{quantity_rounded} litre(s)"
 
         if unit == "tsp" and quantity >= 3:
             quantity_rounded = round(quantity / 3, 1)
