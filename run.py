@@ -148,6 +148,7 @@ def display_recipe_new_measurements(user_choice, new_measurements):
             headings_column, new_measurements, metric_measurements_column
         )
     }
+    print('new_recipe:', new_recipe)
     return new_recipe, metric_measurements_column
 
 
@@ -160,7 +161,7 @@ def convert_tbsp_to_dl(new_recipe):
             quantity_rounded = round(quantity / 6.7, 1)
             new_recipe[ingredient] = f"{quantity_rounded} dl"
 
-    print('2:', new_recipe)
+    print('Metric:', new_recipe)
     return new_recipe
 
 
@@ -171,7 +172,7 @@ def convert_large_metrics_to_new_units(new_recipe):
         quantity = float(quantity)
 
         if unit == "gram" and quantity >= 1000:
-            new_recipe[ingredient] = f"{quantity / 10} kg"
+            new_recipe[ingredient] = f"{quantity / 1000} kg"
 
         if unit == "dl" and quantity >= 10:
             new_recipe[ingredient] = f"{quantity / 10} litre(s)"
@@ -179,6 +180,8 @@ def convert_large_metrics_to_new_units(new_recipe):
         if unit == "tsp" and quantity >= 3:
             quantity_rounded = round(quantity / 3, 1)
             new_recipe[ingredient] = f"{quantity_rounded} tbsp"
+
+    print('Metric_large:', new_recipe)        
 
     return new_recipe
 
@@ -194,7 +197,7 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
     1litre = 4.22675284 cups
     1dl = 0.422675284 cups
     """
-
+    print('NR!:', new_recipe)
     converted_measurements = []
     unconverted_measurements = []
 
@@ -219,7 +222,7 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
             quantity = measurement.split()[0]
             converted_measurement_pounds = round(
                 float(quantity) * 2.2046, 1)
-            converted_measurements.append(converted_measurement_pounds)
+            converted_measurements.append((converted_measurement_pounds, 'lbs'))
             conversion = True
 
         if "litre(s)" in measurement:
@@ -230,7 +233,7 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
             conversion = True
 
         if not conversion:
-            unconverted_measurements.append((heading, measurement))
+            unconverted_measurements.append((heading, measurement))       
 
     data = SHEET.worksheet(user_choice).get_all_values()
     headings_column = [row[0] for row in data[1:]]
@@ -243,23 +246,9 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
         )
     ]
     newer_recipe_imperial = new_recipe_imperial + unconverted_measurements
-    print(new_recipe_imperial)
-    print(newer_recipe_imperial)
+    print('newer:', newer_recipe_imperial)
     return new_recipe_imperial, newer_recipe_imperial
 
-
-def convert_large_imperial_to_new_units(newer_recipe_imperial):
-
-    for i in range(len(newer_recipe_imperial)):
-        ingredient, measurement = newer_recipe_imperial[i]
-        quantity, unit = measurement.split()
-        quantity = float(quantity)
-
-        if unit == "ounces" and quantity >= 16:
-            measurement = round(quantity / 16, 1)
-            newer_recipe_imperial[i] = ingredient, f"{measurement} pounds"
-
-    return newer_recipe_imperial
 
 
 def display_recipe_metric(new_recipe):
@@ -309,16 +298,15 @@ def main():
         new_recipe, metric_measurements_column = \
             display_recipe_new_measurements(
                 user_choice, new_measurements)
+        
         new_recipe = convert_large_metrics_to_new_units(new_recipe)
-
-        new_recipe = convert_tbsp_to_dl(new_recipe)
-
+        
         newer_recipe_imperial, new_recipe_imperial = \
             convert_metrics_to_imperial_units(
                 new_recipe, user_choice)
 
-        convert_large_imperial_to_new_units(
-            new_recipe_imperial)
+        new_recipe = convert_tbsp_to_dl(new_recipe)  
+        
         unit_choice = input_request_metric_imperial(
             new_recipe, new_recipe_imperial)
 

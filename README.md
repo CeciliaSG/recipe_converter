@@ -6,7 +6,7 @@ This is a recipe ingredient conversion app, and would most probably be part of a
 
 The app converts ingredient amounts from one upto 100 portions. It also converts metric measurements to imperial if the user wants those instead.
 
-<h2 align="center"><img src="https://i.ibb.co/TYvTXz1/Example-CI.png"></h2>
+<h2 align="center"><img src=""></h2>
 
 ## User Experience (UX)
 
@@ -79,9 +79,6 @@ The CI Python Linter was used to check the code. On the first few checks there w
 | Choose portions| The user is prompted to input portions| Portions: 90 Portions ✔     |
 | Choose metric/imperial| The user is prompted to choose imperial/metric |  The program prints the users choice  |
 | Another recipe y/n| The user is aksed if they want to cook something else. yes/no? |  no - and the program ends, yes - and the program starts again.    |
-| Incorrect input for recipe| Text |    |
-| Incorrect input for portions| Text |    |
-| Incorrect input for metric/imperial| Text |    |
 
 ### Known Bugs
 
@@ -137,8 +134,14 @@ $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 
 Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop) to retrieve pictures for some of the buttons and more detailed explanations of the above process.
 
-## Creating the Heroku app
+## Creating the Heroku app, deploying to Heroku
 
+Steps to follow for deployment to Heroku:
+
+### In GitHub.
+1. Navigate to the repository for the project. 
+
+### In Heroku
 When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
 
 1. `heroku/python`
