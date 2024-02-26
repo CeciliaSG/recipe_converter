@@ -18,11 +18,10 @@ def get_user_recipe_choice(worksheet_titles):
     Gets the users's recipe choice.
     """
     print("Please choose a recipe from our recipe bank.")
-    print("Recipes to choose from:\n")
+    print("What would you like to cook? Please choose a recipe:\n")
     print("\n".join([title.title() for title in worksheet_titles]) + "\n")
 
     user_choice = input("Please enter your choice: \n").lower()
-    # print(f"You chose {user_choice}\n")
 
     return user_choice
 
@@ -149,7 +148,6 @@ def display_recipe_new_measurements(user_choice, new_measurements):
             headings_column, new_measurements, metric_measurements_column
         )
     }
-    print("new_reipe:", new_recipe)
     return new_recipe, metric_measurements_column
 
 
@@ -158,11 +156,11 @@ def convert_tbsp_to_dl(new_recipe):
         quantity, unit = measurement.split()
         quantity = float(quantity)
 
-    if unit == "tbsp" and quantity >= 6.7:
-        quantity_rounded = round(quantity / 6.7, 1)
-        new_recipe[ingredient] = f"{quantity_rounded} dl"
+        if unit == "tbsp" and quantity >= 6.7:
+            quantity_rounded = round(quantity / 6.7, 1)
+            new_recipe[ingredient] = f"{quantity_rounded} dl"
 
-    print(new_recipe)
+    print('2:', new_recipe)
     return new_recipe
 
 
@@ -245,7 +243,8 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
         )
     ]
     newer_recipe_imperial = new_recipe_imperial + unconverted_measurements
-
+    print(new_recipe_imperial)
+    print(newer_recipe_imperial)
     return new_recipe_imperial, newer_recipe_imperial
 
 
@@ -346,6 +345,6 @@ def main():
 
 print("Welcome to our recipe bank,")
 print("where you can convert each recipe")
-print("for the exact number of portions you are cooking")
+print("for the exact number of portions you are cooking for.")
 if __name__ == "__main__":
     main()

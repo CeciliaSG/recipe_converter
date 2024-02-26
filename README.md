@@ -2,7 +2,9 @@
 
 **[View the live project here](https://recipe-converter-0e511cb84db5.herokuapp.com/) and the [Spreadsheet here]([Spreadsheet](https://docs.google.com/spreadsheets/d/1HxRmrXuh0vBWrZJDnR1j-UeINHnjVnlFtAIUtNRiUoE/edit?pli=1#gid=1522122947))**
 
-This is a recipe ingredient conversion app. It would most probably be part of a more extensive recipe site. The apps function is to facilitate the users experience, by easily converting the recipe ingredients for number of portions, and for either metric or imperial units.
+This is a recipe ingredient conversion app, and would most probably be part of a more extensive recipe site. The apps function is to facilitate the users experience, by easily converting the recipe ingredients for number of portions, and for either metric or imperial units. The apps function is for all users who waant to cook a recipe on the website or blog.
+
+The app converts ingredient amounts from one upto 100 portions. It also converts metric measurements to imperial if the user wants those instead.
 
 <h2 align="center"><img src="https://i.ibb.co/TYvTXz1/Example-CI.png"></h2>
 
@@ -55,21 +57,18 @@ The CI Python Linter was used to check the code. On the first few checks there w
 | Choose recipe| The user is prompted to input a choice | You have chosen mashed potatoes. This recipe is available.  |
 | Choose portions| The user is prompted to input portions| Portions: 90 Portions ✔     |
 | Choose metric/imperial| The user is prompted to choose imperial/metric |  The program prints the users choice  |
-| Another recipe y/n| The user is aksed if they want to cook something else. yes/no? |  no - and the program ends, yes - and the program starts again.    |
-| Incorrect input for recipe| Text |    |
-| Incorrect input for portions| Text |    |
-| Incorrect input for metric/imperial| Text |    |
+| Another recipe yes/no| The user is aksed if they want to cook something else. yes/no? |  no - and the program ends, yes - and the program starts again. |
 
 
 ## Testing incorrect input:
 
-| Action|  Result |
-| ----------- | ----------- |
-| The user presss enter without entering anything | Your choice: . No such recipe. Please choose recipe in our recipe bank.| 
+| Action|  Result | Improvement suggestions|
+| ----------- | ----------- |----------- |
+| The user presss enter without entering anything | Your choice:  No such recipe. Please choose recipe in our recipe bank.| | 
 | User enters incorrect recipe| Your choice: mongolian beef. No such recipe. Please choose recipe in our recipe bank.
-| User enters incorrect numerical value for portions |Portions: 0 Not a correct choice: Choose a number between 1 and 100, you provided 0 Not a valid choice. Please try again |
-| User enters wrong value for metric/imperial| Please enter valid choice Please choose imperial/metric: | 
-| User enters wrong value for yes/no| Invalid choice. Please enter yes or no Do you want to cook something else? (yes/no) |
+| User enters incorrect numerical value for portions |Portions: 0 Not a correct choice: Choose a number between 1 and 100, you provided 0 Not a valid choice. Please try again |    | 
+| User enters wrong value for metric/imperial| Please enter valid choice Please choose imperial/metric: |   | 
+| User enters wrong value for yes/no| Invalid choice. Please enter yes or no Do you want to cook something else? (yes/no) | | 
 
 ## Checking conversions:
 
@@ -86,9 +85,9 @@ The CI Python Linter was used to check the code. On the first few checks there w
 
 ### Known Bugs
 
--   On some mobile devices the Hero Image pushes the size of screen out more than any of the other content on the page.
-    -   A white gap can be seen to the right of the footer and navigation bar as a result.
--   On Microsoft Edge and Internet Explorer Browsers, all links in Navbar are pushed upwards when hovering over them.
+-   Lorem Ipsum.
+    -   Lorem Ipsum.
+-   Lorem Ipsum.
 
 ## Deployment
 
