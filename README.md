@@ -61,6 +61,16 @@ The CI Python Linter was used to check the code. On the first few checks there w
 | Incorrect input for metric/imperial| Text |    |
 
 
+## Testing incorrect input:
+
+| Action|  Result |
+| ----------- | ----------- |
+| The user presss enter without entering anything | Your choice: . No such recipe. Please choose recipe in our recipe bank.| 
+| User enters incorrect recipe| Your choice: mongolian beef. No such recipe. Please choose recipe in our recipe bank.
+| User enters incorrect numerical value for portions |Portions: 0 Not a correct choice: Choose a number between 1 and 100, you provided 0 Not a valid choice. Please try again |
+| User enters wrong value for metric/imperial| Please enter valid choice Please choose imperial/metric: | 
+| User enters wrong value for yes/no| Invalid choice. Please enter yes or no Do you want to cook something else? (yes/no) |
+
 ## Checking conversions:
 
 | Action| Description |  Result |
