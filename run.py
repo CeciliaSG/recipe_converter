@@ -179,8 +179,6 @@ def convert_large_metrics_to_new_units(new_recipe):
             quantity_rounded = round(quantity / 3, 1)
             new_recipe[ingredient] = f"{quantity_rounded} tbsp"
 
-    print('Metric_large:', new_recipe)
-
     return new_recipe
 
 
@@ -258,7 +256,6 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
     ]
 
     newer_recipe_imperial = new_recipe_imperial + unconverted_measurements
-    print('newer:', newer_recipe_imperial)
     return new_recipe_imperial, newer_recipe_imperial
 
 
