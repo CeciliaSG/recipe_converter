@@ -73,10 +73,9 @@ The CI Python Linter was used to check the code. On the first few checks there w
 | Action| Description |  Result |
 | ----------- | ----------- |----------- |
 | Mltiply no. of portions by ingredients | Gets the correct ingredients multiplies by the correct no. of portions| Return the result in metric measurements| Works as it should |
-| Convert measurements for large no.| If a large number of portions are requested, the program will convert dl to litre(s), tbsp to dl etc.| Works as it should|
-| Convert measuremetns to imperial| When imperial units are chosen.| Works when tested     |
-| Convert imperial measurements for large number| Converts ounces to pounds and tbsp to cups|  The program prints the users choice  |
-| Another recipe y/n| The user is aksed if they want to cook something else. yes/no? |  no - and the program ends, yes - and the program starts again.    |
+| Convert measurements for large no.| If a large number of portions are requested, the program will convert dl to litre(s), tbsp to dl etc.| Seems to work as it should|
+| Convert measuremetns to imperial| When imperial units are chosen| Seems to work as it should when tested |
+| Convert imperial for large numbers| Converts ounces to pounds and tbsp to cups|  Seems to work s it should when tested  |
 
 ### Known Bugs
 
