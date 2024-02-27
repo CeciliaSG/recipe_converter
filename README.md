@@ -66,7 +66,7 @@ The CI Python Linter was used to check the code. On the first few checks there w
 | User enters incorrect recipe| Your choice: mongolian beef. No such recipe. Please choose recipe in our recipe bank.
 | User enters incorrect numerical value for portions |Portions: 0 Not a correct choice: Choose a number between 1 and 100, you provided 0 Not a valid choice. Please try again |    | 
 | User enters wrong value for metric/imperial| Please enter valid choice Please choose imperial/metric: |   | 
-| User enters wrong value for yes/no| Invalid choice. Please enter yes or no Do you want to cook something else? (yes/no) | | 
+| User enters wrong value for yes/no| Invalid choice. Please enter yes or no. Do you want to cook something else? (yes/no) | | 
 
 ## Checking conversions:
 
@@ -74,14 +74,12 @@ The CI Python Linter was used to check the code. On the first few checks there w
 | ----------- | ----------- |----------- |
 | Mltiply no. of portions by ingredients | Gets the correct ingredients multiplies by the correct no. of portions| Return the result in metric measurements| Works as it should |
 | Convert measurements for large no.| If a large number of portions are requested, the program will convert dl to litre(s), tbsp to dl etc.| Seems to work as it should|
-| Convert measuremetns to imperial| When imperial units are chosen| Seems to work as it should when tested |
-| Convert imperial for large numbers| Converts ounces to pounds and tbsp to cups|  Seems to work s it should when tested  |
+| Convert measuremetns to imperial| When imperial units are chosen| Seems to work as it should when tested (with small exception see know bugs) |
+| Convert imperial for large numbers| Converts ounces to pounds and tbsp to cups|  Seems to work as it should when tested (with small exception see know bugs) |
 
 ### Known Bugs
 
--   Lorem Ipsum.
-    -   Lorem Ipsum.
--   Lorem Ipsum.
+-   I encountered an issue when testing the conversion to imperial units, only for specific units and the issue seemed to be related to the order or the ingredients in the spreadsheet. Rearranging the order solved the problem. This issue needs to be adressed. i tried several solution, but found that it only worked for for a smaller number of portions and not when converting large number of portions to imperial units.
 
 ## Deployment
 

@@ -207,7 +207,7 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
         ('gram', 'ounces'),
         ('dl', 'cups'),
         ('kg', 'pounds'),
-        ('litre(s)', 'cups')
+        ('litre(s)', 'cups'),
     ]
 
     for heading, measurement in new_recipe.items():
@@ -222,6 +222,7 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
                 converted_measurements.append(
                         (converted_measurement_ounces, 'ounces'))
                 conversion = True
+                break
 
             elif "dl" in measurement:
                 quantity = measurement.split()[0]
@@ -230,6 +231,7 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
                 converted_measurements.append(
                     (converted_measurement_dl_cups, 'cups'))
                 conversion = True
+                break
 
             elif "kg" in measurement:
                 quantity = measurement.split()[0]
@@ -238,6 +240,7 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
                 converted_measurements.append(
                     (converted_measurement_pounds, 'pounds'))
                 conversion = True
+                break
 
             elif "litre(s)" in measurement:
                 quantity = measurement.split()[0]
@@ -246,7 +249,7 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
                 converted_measurements.append(
                     (converted_measurement_litres_cups, 'cups'))
                 conversion = True
-            break
+                break
 
         if not conversion:
             unconverted_measurements.append((heading, measurement))
