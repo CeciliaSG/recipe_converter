@@ -1,6 +1,6 @@
 <h1 align="center">Recipe Ingredient Converter</h1>
 
-[View the live project here](https://recipe-converter-0e511cb84db5.herokuapp.com/) and the [Spreadsheet here](https://docs.google.com/spreadsheets/d/1HxRmrXuh0vBWrZJDnR1j-UeINHnjVnlFtAIUtNRiUoE/edit?pli=1#gid=1522122947)
+[View the live project here](https://recipe-converter-0e511cb84db5.herokuapp.com/) and the [Spreadsheet here](https://docs.google.com/spreadsheets/d/1HxRmrXuh0vBWrZJDnR1j-UeINHnjVnlFtAIUtNRiUoE/edit?usp=sharing)
 
 This is a recipe ingredient conversion app, and would most probably be part of a more extensive recipe site. The apps function is to facilitate the users experience, by easily converting the recipe ingredients for number of portions, and for either metric or imperial units. The apps function is for all users who waant to cook a recipe on the website or blog. The app doesn't include the cooking method as this would be part of the more extensive site, but could be included if one wanted to.
 
