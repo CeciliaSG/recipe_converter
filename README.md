@@ -6,7 +6,7 @@ This is a recipe ingredient conversion app, and would most probably be part of a
 
 The app converts ingredient amounts from one upto 100 portions. It also converts metric measurements to imperial if the user wants those instead.
 
-<h2 align="center"><img src=""></h2>
+<h2 align="center"><img src="documentation/showcase.png"></h2>
 
 ## User Experience (UX)
 
