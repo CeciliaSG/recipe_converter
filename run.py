@@ -184,7 +184,7 @@ def convert_large_metrics_to_new_units(new_recipe):
         if unit == "tsp" and quantity >= 3:
             quantity_rounded = round(quantity / 3, 1)
             new_recipe[ingredient] = f"{quantity_rounded} tbsp"
-    print(new_recipe)
+
     return new_recipe
 
 
@@ -311,17 +311,15 @@ def main():
 
         new_recipe, metric_measurements_column = \
             display_recipe_new_measurements(
-                user_choice, new_measurements)      
+                user_choice, new_measurements)
 
         new_recipe = convert_large_metrics_to_new_units(new_recipe)
 
-        new_recipe = convert_tbsp_to_dl(new_recipe)  
+        new_recipe = convert_tbsp_to_dl(new_recipe)
 
         newer_recipe_imperial, new_recipe_imperial = \
             convert_metrics_to_imperial_units(
                 new_recipe, user_choice)
-
-        
 
         unit_choice = input_request_metric_imperial(
             new_recipe, new_recipe_imperial)
