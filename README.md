@@ -171,8 +171,8 @@ Steps to follow for deployment to Heroku:
 - [Convert dict to concatenated string](https://www.geeksforgeeks.org/python-convert-dictionary-to-concatenated-string/)
 - [Using if in to check a list](https://www.geeksforgeeks.org/check-if-element-exists-in-list-in-python/)
 - [Using Isinstance](https://ioflood.com/blog/python-isinstance-function-guide-with-examples/)
-- [Using Isinstance](https://ioflood.com/blog/python-isinstance-function-guide-with-examples/)
-- [Printint elements from a list](https://discuss.python.org/t/printing-the-elements-of-a-dictionary-that-is-contained-in-a-list-how/13568)
+- [Using Isinstance](https://stackoverflow.com/questions/1549801/what-are-the-differences-between-type-and-isinstance)
+- [Printing elements from a list](https://discuss.python.org/t/printing-the-elements-of-a-dictionary-that-is-contained-in-a-list-how/13568/5)
 - [if_name_equals](https://www.theserverside.com/tip/What-does-the-Python-if-name-equals-main-construct-do)
     Added after advice from mentor.
 - [Using range and len](https://www.freecodecamp.org/news/python-range-function-example/)
