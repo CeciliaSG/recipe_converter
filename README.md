@@ -2,7 +2,7 @@
 
 **[View the live project here](https://recipe-converter-0e511cb84db5.herokuapp.com/) and the [Spreadsheet here]([Spreadsheet](https://docs.google.com/spreadsheets/d/1HxRmrXuh0vBWrZJDnR1j-UeINHnjVnlFtAIUtNRiUoE/edit?pli=1#gid=1522122947))**
 
-This is a recipe ingredient conversion app, and would most probably be part of a more extensive recipe site. The apps function is to facilitate the users experience, by easily converting the recipe ingredients for number of portions, and for either metric or imperial units. The apps function is for all users who waant to cook a recipe on the website or blog.
+This is a recipe ingredient conversion app, and would most probably be part of a more extensive recipe site. The apps function is to facilitate the users experience, by easily converting the recipe ingredients for number of portions, and for either metric or imperial units. The apps function is for all users who waant to cook a recipe on the website or blog. The app doesn't include the cooking method as this would be part of the more extensive site, but could be included if one wanted to.
 
 The app converts ingredient amounts from one upto 100 portions. It also converts metric measurements to imperial if the user wants those instead.
 
@@ -72,10 +72,10 @@ The CI Python Linter was used to check the code. On the first few checks there w
 
 | Action| Description |  Result |
 | ----------- | ----------- |----------- |
-| Display recipe | Program fetches the recipe titles from the spreadsheet| Titles are displayed  |
-| Choose recipe| The user is prompted to input a choice | You have chosen mashed potatoes. This recipe is available.  |
-| Choose portions| The user is prompted to input portions| Portions: 90 Portions ✔     |
-| Choose metric/imperial| The user is prompted to choose imperial/metric |  The program prints the users choice  |
+| Mltiply no. of portions by ingredients | Gets the correct ingredients multiplies by the correct no. of portions| Return the result in metric measurements| Works as it should |
+| Convert measurements for large no.| If a large number of portions are requested, the program will convert dl to litre(s), tbsp to dl etc.| Works as it should|
+| Convert measuremetns to imperial| When imperial units are chosen.| Works when tested     |
+| Convert imperial measurements for large number| Converts ounces to pounds and tbsp to cups|  The program prints the users choice  |
 | Another recipe y/n| The user is aksed if they want to cook something else. yes/no? |  no - and the program ends, yes - and the program starts again.    |
 
 ### Known Bugs
@@ -173,13 +173,14 @@ Steps to follow for deployment to Heroku:
 - [Using if in to check a list](https://www.geeksforgeeks.org/check-if-element-exists-in-list-in-python/)
 - [Using Isinstance](https://ioflood.com/blog/python-isinstance-function-guide-with-examples/)
 - [Using Isinstance](https://ioflood.com/blog/python-isinstance-function-guide-with-examples/)
+- [Printint elements from a list](https://discuss.python.org/t/printing-the-elements-of-a-dictionary-that-is-contained-in-a-list-how/13568)
 - [if_name_equals](https://www.theserverside.com/tip/What-does-the-Python-if-name-equals-main-construct-do)
     Added after advice from mentor.
 - [Using range and len](https://www.freecodecamp.org/news/python-range-function-example/)
 - [Using len and range](https://stackoverflow.com/questions/19184335/is-there-a-need-for-rangelena)
 - [Local variable referenced before assignment in Python](https://byby.dev/py-local-variable)
-- [Convering strings with commas to floats, localised formats](https://ioflood.com/blog/convert-string-to-float-python/)
-- [Convering strings with commas to floats, localised formats](https://stackoverflow.com/questions/64951352/converting-string-to-float-with-as-thousands-separator-123-000-12-to-123)
+- [Converting strings with commas to floats, localised formats](https://ioflood.com/blog/convert-string-to-float-python/)
+- [Converting strings with commas to floats, localised formats](https://stackoverflow.com/questions/64951352/converting-string-to-float-with-as-thousands-separator-123-000-12-to-123)
 
 ### Content
 

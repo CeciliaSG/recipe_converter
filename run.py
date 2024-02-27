@@ -184,7 +184,7 @@ def convert_large_metrics_to_new_units(new_recipe):
         if unit == "tsp" and quantity >= 3:
             quantity_rounded = round(quantity / 3, 1)
             new_recipe[ingredient] = f"{quantity_rounded} tbsp"
-
+    print(new_recipe)
     return new_recipe
 
 
@@ -215,12 +215,11 @@ def convert_metrics_to_imperial_units(new_recipe, user_choice):
 
         for metric_unit, imperial_unit in conversion_mappings:
 
-            if metric_unit in measurement:
+            if "gram" in measurement:
                 quantity = measurement.split()[0]
-                if metric_unit == "gram":
-                    converted_measurement_ounces = round(
+                converted_measurement_ounces = round(
                         float(quantity) * 0.03527, 1)
-                    converted_measurements.append(
+                converted_measurements.append(
                         (converted_measurement_ounces, 'ounces'))
                 conversion = True
 
@@ -312,15 +311,17 @@ def main():
 
         new_recipe, metric_measurements_column = \
             display_recipe_new_measurements(
-                user_choice, new_measurements)
+                user_choice, new_measurements)      
 
         new_recipe = convert_large_metrics_to_new_units(new_recipe)
+
+        new_recipe = convert_tbsp_to_dl(new_recipe)  
 
         newer_recipe_imperial, new_recipe_imperial = \
             convert_metrics_to_imperial_units(
                 new_recipe, user_choice)
 
-        new_recipe = convert_tbsp_to_dl(new_recipe)
+        
 
         unit_choice = input_request_metric_imperial(
             new_recipe, new_recipe_imperial)
