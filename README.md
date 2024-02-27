@@ -1,6 +1,6 @@
 <h1 align="center">Recipe Ingredient Converter</h1>
 
-**[View the live project here](https://recipe-converter-0e511cb84db5.herokuapp.com/) and the [Spreadsheet here]([Spreadsheet](https://docs.google.com/spreadsheets/d/1HxRmrXuh0vBWrZJDnR1j-UeINHnjVnlFtAIUtNRiUoE/edit?pli=1#gid=1522122947))**
+[View the live project here](https://recipe-converter-0e511cb84db5.herokuapp.com/) and the [Spreadsheet here](https://docs.google.com/spreadsheets/d/1HxRmrXuh0vBWrZJDnR1j-UeINHnjVnlFtAIUtNRiUoE/edit?pli=1#gid=1522122947)
 
 This is a recipe ingredient conversion app, and would most probably be part of a more extensive recipe site. The apps function is to facilitate the users experience, by easily converting the recipe ingredients for number of portions, and for either metric or imperial units. The apps function is for all users who waant to cook a recipe on the website or blog. The app doesn't include the cooking method as this would be part of the more extensive site, but could be included if one wanted to.
 
@@ -21,7 +21,7 @@ The app converts ingredient amounts from one upto 100 portions. It also converts
 
 ### Future features and usage, things to change or do differently
 
-Creating the app has been a great learning experience, and if I had more time I would now go back and change a few things. One would be that I should have stored all values and keys in the program and built a function for the calculations. This is something I have ralised along the way, but now don't have time to go back and change.
+Creating the app has been a great learning experience, and if I had more time I would now go back and change a few things. One would be that I should have stored all values and keys in the program and built a specific function for the calculations. This is something I have ralised along the way, but now don't have time to go back and change.
 
 ### Languages Used
 
